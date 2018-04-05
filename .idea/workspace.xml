@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b29b018c-89bd-49c9-8e9c-5f96a8f94e3c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_actuator_docs_unknown.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/pom.xml" afterPath="$PROJECT_DIR$/web-scraper/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/WebScraperApplication.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/WebScraperApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/repository/JobReportRepository.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/repository/JobReportRepository.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -44,11 +41,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JobRequest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JobRequest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/model/JobRequest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="420">
               <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JobRequestRepository.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/repository/JobRequestRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -124,6 +133,7 @@
         <option value="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/model/JobRequest.java" />
         <option value="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/mappers/JobRequestMapper.java" />
         <option value="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/dtos/JobRequestDTO.java" />
+        <option value="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/repository/JobRequestRepository.java" />
       </list>
     </option>
   </component>
@@ -414,10 +424,10 @@
       <recent name="ee.bilal.dev.engine.webscraper" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ee.bilal.dev.engine.webscraper.domain.repository" />
       <recent name="ee.bilal.dev.engine.webscraper.application.mappers" />
       <recent name="ee.bilal.dev.engine.webscraper.domain.model" />
       <recent name="ee.bilal.dev.engine.webscraper.application.dtos" />
-      <recent name="ee.bilal.dev.engine.webscraper.domain.repository" />
       <recent name="ee.bilal.dev.engine.webscraper.rest.controller" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -575,12 +585,12 @@
       <option name="presentableId" value="Default" />
       <updated>1522964090944</updated>
       <workItem from="1522964096465" duration="610000" />
-      <workItem from="1522964720746" duration="3901000" />
+      <workItem from="1522964720746" duration="4065000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4511000" />
+    <option name="totallyTimeSpent" value="4675000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -846,7 +856,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/repository/JobRepository.java">
+    <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/repository/JobReportRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="55" lean-forward="false" selection-start-line="7" selection-start-column="55" selection-end-line="7" selection-end-column="55" />
@@ -920,6 +930,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/repository/JobRequestRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
