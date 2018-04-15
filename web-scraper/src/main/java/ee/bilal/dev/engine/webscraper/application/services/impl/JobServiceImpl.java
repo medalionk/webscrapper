@@ -4,6 +4,7 @@ import ee.bilal.dev.engine.webscraper.application.dtos.JobReportDTO;
 import ee.bilal.dev.engine.webscraper.application.dtos.JobRequestDTO;
 import ee.bilal.dev.engine.webscraper.application.dtos.JobResultDTO;
 import ee.bilal.dev.engine.webscraper.application.services.JobService;
+import ee.bilal.dev.engine.webscraper.application.services.ScrapperService;
 import ee.bilal.dev.engine.webscraper.domain.model.JobRequest;
 import ee.bilal.dev.engine.webscraper.domain.repository.JobRequestRepository;
 import ee.bilal.dev.engine.webscraper.util.StringUtil;
@@ -38,7 +39,7 @@ class ListLinks {
     private static float percentage = 0;
 
     public static void scrape(List<JobRequestDTO> reqs) {
-
+        ScrapperServiceImpl scrapperService = new ScrapperServiceImpl();
 
         ExecutorService executorService = Executors.newFixedThreadPool(4);
         Future<String> future1 = executorService.submit(() -> "Hello World");
@@ -53,15 +54,23 @@ class ListLinks {
         }
 
         long asyncStartTime = System.currentTimeMillis();
-        List<Callable<Set<String>>> callableTasks = new ArrayList<>();
+        Consumer<JobResultDTO> consumer = (x) -> {
+            print("\nResult: (%s)", x);
+        };
+        scrapperService.scrape(reqs, consumer);
+        long asyncEndTime = System.currentTimeMillis();
+
+        /*List<Callable<Set<String>>> callableTasks = new ArrayList<>();
         for (JobRequestDTO req : reqs) {
+            String id = UniqueSequence.getNext();
             Consumer<JobResultDTO> consumer = (x) -> {
+                x.setId(id);
                 x.setFrn(req.getFrn());
                 print("\nResult: (%s)", x);
             };
 
             Set<String> nextLinks = new HashSet<>(Collections.singletonList(req.getUrl()));
-            String id = UniqueSequence.getNext();
+            req.setId(id);
             callableTasks.add(() -> scraperWrapper(nextLinks, req.getLinksPerLevel(), req.getMaxLevel(), id, consumer));
         }
 
@@ -72,9 +81,7 @@ class ListLinks {
         } catch (InterruptedException e) {
             LOGGER.error("Execution intrrupted {}", e.getMessage());
             Thread.currentThread().interrupt();
-        }
-
-        long asyncEndTime = System.currentTimeMillis();
+        }*/
 
 
         long startTime = System.currentTimeMillis();
@@ -83,7 +90,7 @@ class ListLinks {
             LOGGER.info("Job request for: '{}' ", req);
 
             String id = UniqueSequence.getNext();
-            Consumer<JobResultDTO> consumer = (x) -> {
+            Consumer<JobResultDTO> consumer1 = (x) -> {
                 x.setId(id);
                 x.setFrn(req.getFrn());
                 print("\nResult: (%s)", x);
@@ -96,7 +103,7 @@ class ListLinks {
 
         long endTime = System.currentTimeMillis();
 
-        print("\nAsynchronous\nQueued: (%d)\nElapsed Time: (%f)", asyncQueues.size(), (double)(asyncEndTime - asyncStartTime) / 1000.0);
+        print("\nAsynchronous\nQueued: (%d)\nElapsed Time: (%f)", syncQueues.size(), (double)(asyncEndTime - asyncStartTime) / 1000.0);
         print("\nSynchronous\nQueued: (%d)\nElapsed Time: (%f)", syncQueues.size(), (double)(endTime - startTime) / 1000.0);
     }
 
@@ -200,7 +207,7 @@ class ListLinks {
 
             LOGGER.info("Fetching text in '{}' ", url);
             String body = doc.body().text();
-            consumer.accept(JobResultDTO.of(url, body));
+            consumer.accept(JobResultDTO.of("", "", url, body));
 
             LOGGER.info("Fetching links in '{}' ", url);
             Elements links = doc.select("a[href]");
@@ -231,10 +238,12 @@ class ListLinks {
 public class JobServiceImpl implements JobService {
     private static final Logger LOGGER = LoggerFactory.getLogger(JobServiceImpl.class);
     private final JobRequestRepository requestRepository;
+    private final ScrapperService scrapperService;
 
     @Autowired
-    public JobServiceImpl(JobRequestRepository requestRepository) {
+    public JobServiceImpl(JobRequestRepository requestRepository, ScrapperService scrapperService) {
         this.requestRepository = requestRepository;
+        this.scrapperService = scrapperService;
 
         String url = "https://edition.cnn.com/world";
         String url2 = "https://bbc.com/";

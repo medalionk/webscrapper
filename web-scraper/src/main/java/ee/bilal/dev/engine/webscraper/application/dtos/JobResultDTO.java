@@ -29,8 +29,10 @@ public class JobResultDTO implements DTO<JobResult> {
     private Instant createdDate;
     private Instant lastModifiedDate;
 
-    public static JobResultDTO of(String url, String text){
+    public static JobResultDTO of(String id, String frn, String url, String text){
         JobResultDTO result = new JobResultDTO();
+        result.setId(id);
+        result.setFrn(frn);
         result.setUrl(url);
         result.setText(text);
 
