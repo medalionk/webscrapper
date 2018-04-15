@@ -19,14 +19,16 @@ import javax.validation.constraints.NotEmpty;
 public class JobRequest extends AuditingEntity {
     @NotEmpty
     @NonNull
-    @Column(name = "link", nullable = false)
-    private String link;
+    @Column(name = "url", nullable = false)
+    private String url;
 
+    @NotEmpty
+    @NonNull
     @Column(name = "frn", nullable = false)
-    private long frn;
+    private String frn;
 
-    @Column(name = "levels")
-    private int levels;
+    @Column(name = "max_level")
+    private int maxLevel;
 
     @Column(name = "links_per_level")
     private int linksPerLevel;

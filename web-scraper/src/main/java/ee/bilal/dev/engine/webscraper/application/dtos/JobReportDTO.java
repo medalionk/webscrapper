@@ -1,7 +1,7 @@
 package ee.bilal.dev.engine.webscraper.application.dtos;
 
 import ee.bilal.dev.engine.webscraper.application.mappers.JobReportMapper;
-import ee.bilal.dev.engine.webscraper.domain.model.ReportJob;
+import ee.bilal.dev.engine.webscraper.domain.model.JobReport;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
@@ -14,15 +14,19 @@ import java.time.Instant;
 @EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor(force = true)
 @AllArgsConstructor(staticName = "of")
-public class JobReportDTO implements DTO<ReportJob> {
+public class JobReportDTO implements DTO<JobReport> {
     private String id;
 
     @NotEmpty
     @NonNull
     private String dateTimeStarted;
+
+    @NotEmpty
+    @NonNull
+    private String frn;
+
     private String dateTimeCompleted;
     private float percentageComplete;
-    private long frn;
 
     @NotEmpty
     @NonNull
@@ -32,7 +36,7 @@ public class JobReportDTO implements DTO<ReportJob> {
     private Instant lastModifiedDate;
 
     @Override
-    public ReportJob asEntity() {
+    public JobReport asEntity() {
         return JobReportMapper.INSTANCE.toEntity(this);
     }
 }

@@ -22,7 +22,7 @@ public final class ValidationUtil {
         }
     }
 
-    public static <T> void validatePropertyNotNull(T t, String name) throws IllegalArgumentException{
+    public static <T> void validatePropertyNotNull(T t, String name) {
         if (t == null) throw new IllegalArgumentException(String.format("Parameter '%s' cannot be null", name));
     }
 
@@ -33,16 +33,16 @@ public final class ValidationUtil {
 
     public static void validateIdentity(String id)
     {
-        validatePropertyNotNullOrEmpty(id, "Id");
+        validateStringNotNullOrEmpty(id, "Id");
     }
 
-    public static <E> void validateListNotNullOrEmpty(List<E> property, String name) throws IllegalArgumentException{
+    public static <E> void validateListNotNullOrEmpty(List<E> property, String name) {
         validatePropertyNotNull(property, name);
         if (property.isEmpty())
             throw new IllegalArgumentException(String.format("Parameter '%s' cannot be empty", name));
     }
 
-    public static void validatePropertyNotNullOrEmpty(String property, String name) throws IllegalArgumentException{
+    public static void validateStringNotNullOrEmpty(String property, String name) {
         validatePropertyNotNull(property, name);
         if (property.trim().isEmpty())
             throw new IllegalArgumentException(String.format("Parameter '%s' cannot be empty", name));

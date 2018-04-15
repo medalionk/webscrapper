@@ -24,7 +24,9 @@
 		<java.version>1.8</java.version>
 		<org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
 		<org.projectlombok.version>1.16.14</org.projectlombok.version>
-        <org.springframework.boot.version>1.5.9.RELEASE</org.springframework.boot.version>
+		<rx.java2.version>2.0.9</rx.java2.version>
+		<jsoup.version>1.11.2</jsoup.version>
+		<org.springframework.boot.version>1.5.9.RELEASE</org.springframework.boot.version>
         <org.springframework.data.version>2.6.6.RELEASE</org.springframework.data.version>
 	</properties>
 
@@ -106,6 +108,17 @@
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct-jdk8</artifactId>
 			<version>${org.mapstruct.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>${jsoup.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.reactivex.rxjava2</groupId>
+			<artifactId>rxjava</artifactId>
+			<version>${rx.java2.version}</version>
 		</dependency>
 	</dependencies>
 

@@ -13,19 +13,32 @@ import java.time.Instant;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor(force = true)
-@AllArgsConstructor(staticName = "of")
 public class JobRequestDTO implements DTO<JobRequest> {
     private String id;
 
     @NotEmpty
     @NonNull
-    private String link;
-    private long frn;
-    private int levels;
+    private String url;
+
+    @NotEmpty
+    @NonNull
+    private String frn;
+
+    private int maxLevel;
     private int linksPerLevel;
 
     private Instant createdDate;
     private Instant lastModifiedDate;
+
+    public static JobRequestDTO of(String url, String frn, int maxLevel, int linksPerLevel){
+        JobRequestDTO request = new JobRequestDTO();
+        request.setUrl(url);
+        request.setFrn(frn);
+        request.setMaxLevel(maxLevel);
+        request.setLinksPerLevel(linksPerLevel);
+
+        return request;
+    }
 
     @Override
     public JobRequest asEntity() {

@@ -16,20 +16,22 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor(force = true)
 @AllArgsConstructor(staticName = "of")
 @EqualsAndHashCode(callSuper = true)
-public class ReportJob extends AuditingEntity {
+public class JobReport extends AuditingEntity {
     @NotEmpty
     @NonNull
     @Column(name = "date_time_started", nullable = false)
     private String dateTimeStarted;
+
+    @NotEmpty
+    @NonNull
+    @Column(name = "frn", nullable = false)
+    private String frn;
 
     @Column(name = "date_time_completed")
     private String dateTimeCompleted;
 
     @Column(name = "percentage_complete")
     private float percentageComplete;
-
-    @Column(name = "frn", nullable = false)
-    private long frn;
 
     @NotEmpty
     @NonNull
