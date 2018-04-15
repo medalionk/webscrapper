@@ -1,11 +1,9 @@
 package ee.bilal.dev.engine.webscraper.domain.model;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 /**
@@ -16,7 +14,11 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor(force = true)
 @AllArgsConstructor(staticName = "of")
 @EqualsAndHashCode(callSuper = true)
-public class JobReport extends AuditingEntity {
+public class JobReport extends BaseEntity {
+    @Id
+    @Column(columnDefinition = "CHAR(32)", name = "id", updatable = false, nullable = false)
+    protected String id;
+
     @NotEmpty
     @NonNull
     @Column(name = "date_time_started", nullable = false)

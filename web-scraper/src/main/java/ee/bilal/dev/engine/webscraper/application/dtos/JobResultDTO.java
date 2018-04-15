@@ -18,6 +18,10 @@ public class JobResultDTO implements DTO<JobResult> {
 
     @NotEmpty
     @NonNull
+    private String jobId;
+
+    @NotEmpty
+    @NonNull
     private String frn;
 
     @NotEmpty
@@ -29,9 +33,9 @@ public class JobResultDTO implements DTO<JobResult> {
     private Instant createdDate;
     private Instant lastModifiedDate;
 
-    public static JobResultDTO of(String id, String frn, String url, String text){
+    public static JobResultDTO of(String jobId, String frn, String url, String text){
         JobResultDTO result = new JobResultDTO();
-        result.setId(id);
+        result.setJobId(jobId);
         result.setFrn(frn);
         result.setUrl(url);
         result.setText(text);

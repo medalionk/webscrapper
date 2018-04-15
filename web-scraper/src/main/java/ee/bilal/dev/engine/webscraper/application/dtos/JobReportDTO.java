@@ -5,7 +5,6 @@ import ee.bilal.dev.engine.webscraper.domain.model.JobReport;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
-import java.time.Instant;
 
 /**
  * Created by bilal90 on 5/4/2018.
@@ -15,6 +14,8 @@ import java.time.Instant;
 @NoArgsConstructor(force = true)
 @AllArgsConstructor(staticName = "of")
 public class JobReportDTO implements DTO<JobReport> {
+    @NotEmpty
+    @NonNull
     private String id;
 
     @NotEmpty
@@ -31,9 +32,6 @@ public class JobReportDTO implements DTO<JobReport> {
     @NotEmpty
     @NonNull
     private JobStatusDTO status;
-
-    private Instant createdDate;
-    private Instant lastModifiedDate;
 
     @Override
     public JobReport asEntity() {

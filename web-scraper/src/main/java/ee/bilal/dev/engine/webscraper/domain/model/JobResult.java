@@ -17,6 +17,11 @@ import javax.validation.constraints.NotEmpty;
 public class JobResult extends AuditingEntity {
     @NotEmpty
     @NonNull
+    @Column(name = "job_id", nullable = false)
+    private String jobId;
+
+    @NotEmpty
+    @NonNull
     @Column(name = "frn", nullable = false)
     private String frn;
 
