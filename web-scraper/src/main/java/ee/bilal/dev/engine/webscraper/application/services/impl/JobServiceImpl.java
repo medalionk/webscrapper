@@ -38,8 +38,7 @@ class ListLinks {
     private static final Logger LOGGER = LoggerFactory.getLogger(ListLinks.class);
     private static float percentage = 0;
 
-    public static void scrape(List<JobRequestDTO> reqs) {
-        ScrapperServiceImpl scrapperService = new ScrapperServiceImpl();
+    public static void scrape(List<JobRequestDTO> reqs, ScrapperService scrapperService) {
 
         ExecutorService executorService = Executors.newFixedThreadPool(4);
         Future<String> future1 = executorService.submit(() -> "Hello World");
@@ -57,7 +56,7 @@ class ListLinks {
         Consumer<JobResultDTO> consumer = (x) -> {
             print("\nResult: (%s)", x);
         };
-        scrapperService.scrape(reqs, consumer);
+        scrapperService.scrapeSync(reqs, consumer);
         long asyncEndTime = System.currentTimeMillis();
 
         /*List<Callable<Set<String>>> callableTasks = new ArrayList<>();
@@ -261,7 +260,7 @@ public class JobServiceImpl implements JobService {
         requests.add(request2);
         requests.add(request1);
         requests.add(request2);
-        ListLinks.scrape(requests);
+        ListLinks.scrape(requests, scrapperService);
         int g = 6;
     }
 
@@ -271,12 +270,12 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public JobReportDTO getJob(String jobId) {
+    public Optional<JobReportDTO> getJob(String jobId) {
         return null;
     }
 
     @Override
-    public List<JobRequestDTO> processJobs(List<JobRequestDTO> requests) {
+    public List<JobReportDTO> processJobs(List<JobRequestDTO> requests) {
         return new ArrayList<>();
     }
 }

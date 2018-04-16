@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface RestController<T> {
+public interface Rest<T> {
     ResponseEntity<List<T>> getAll();
 
     ResponseEntity<T> get(String id);

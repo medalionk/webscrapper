@@ -29,7 +29,6 @@ public class JobReportDTO implements DTO<JobReport> {
     private String dateTimeCompleted;
     private float percentageComplete;
 
-    @NotEmpty
     @NonNull
     private JobStatusDTO status;
 

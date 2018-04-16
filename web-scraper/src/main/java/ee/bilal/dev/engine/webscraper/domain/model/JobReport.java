@@ -35,7 +35,6 @@ public class JobReport extends BaseEntity {
     @Column(name = "percentage_complete")
     private float percentageComplete;
 
-    @NotEmpty
     @NonNull
     @Enumerated(EnumType.STRING)
     @Column(name = "line_category", columnDefinition="char(32) default 'STARTED'")

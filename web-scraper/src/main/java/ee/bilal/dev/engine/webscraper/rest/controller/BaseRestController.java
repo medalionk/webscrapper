@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by bilal90 on 5/4/2018.
  */
-public class BaseRestController<T extends DTO> extends RestControllerExceptionFilter implements RestController<T>{
+public class BaseRestController<T extends DTO> extends RestControllerExceptionFilter implements Rest<T> {
     protected final GenericService<T> service;
 
     protected <U extends BaseRestController> BaseRestController(Class<U> tClass, GenericService<T> service) {
