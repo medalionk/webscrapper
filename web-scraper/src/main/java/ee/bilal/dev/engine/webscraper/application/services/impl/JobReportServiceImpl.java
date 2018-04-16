@@ -40,16 +40,10 @@ public class JobReportServiceImpl extends BaseGenericService<JobReport, JobRepor
     }
 
     @Override
-    public JobReportDTO updateProgress(String id, float progress) {
-        //JobReport report = repository.getOne(id);
-        return Optional.ofNullable(repository.getOne(id)).map(x -> {
-            x.setPercentageComplete(x.getPercentageComplete() + progress);
-            return JobReportMapper.INSTANCE.toDTO(repository.saveAndFlush(x));
-        }).orElseThrow(() -> new IllegalArgumentException("Invalid JobReport Id"));
-
-        /*return repository.getOne(id).map(x -> {
+    public Optional<JobReportDTO> updateProgress(String id, float progress) {
+        return findOne(id).map(x -> {
             x.setPercentageComplete(x.getPercentageComplete() + progress);
             return super.update(x);
-        }).orElseThrow(() -> new IllegalArgumentException("Invalid JobReport Id"));*/
+        }).orElseThrow(() -> new IllegalArgumentException("Invalid JobReport Id"));
     }
 }
