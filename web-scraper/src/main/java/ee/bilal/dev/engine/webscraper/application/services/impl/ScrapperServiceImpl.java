@@ -2,6 +2,7 @@ package ee.bilal.dev.engine.webscraper.application.services.impl;
 
 import ee.bilal.dev.engine.webscraper.application.dtos.JobRequestDTO;
 import ee.bilal.dev.engine.webscraper.application.dtos.JobResultDTO;
+import ee.bilal.dev.engine.webscraper.application.dtos.JobStatusDTO;
 import ee.bilal.dev.engine.webscraper.application.services.JobReportService;
 import ee.bilal.dev.engine.webscraper.application.services.ScrapperService;
 import ee.bilal.dev.engine.webscraper.util.ValidationUtil;
@@ -39,6 +40,9 @@ public class ScrapperServiceImpl implements ScrapperService {
 
             Set<String> nextLinks = new HashSet<>(Collections.singletonList(req.getUrl()));
             syncQueues.addAll(scraper(nextLinks, req, consumer));
+
+            // Job is completed. Update report.
+            reportService.markCompleted(req.getId());
         }
     }
 
@@ -76,7 +80,7 @@ public class ScrapperServiceImpl implements ScrapperService {
                 queue.addAll(nextUrls);
 
                 double approxTotal = Math.pow(linksPerLevel, maxLevel) + 1;
-                reportService.updateProgress(req.getId(), (float) (100 / approxTotal));
+                reportService.updateProgress(req.getId(), (float) (100 / approxTotal), JobStatusDTO.ONGOING);
                 scraper(nextUrls, queue, currentLevel + 1, req, consumer);
             }
         }

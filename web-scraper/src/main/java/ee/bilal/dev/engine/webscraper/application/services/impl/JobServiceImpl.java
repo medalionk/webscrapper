@@ -47,7 +47,7 @@ public class JobServiceImpl implements JobService {
     public List<JobReportDTO> processJobs(List<JobRequestDTO> requests) {
         List<JobRequestDTO> savedRequests = requestService.saveAll(requests);
         Consumer<JobResultDTO> consumer = x -> {
-            LOGGER.info("\nResult: ({})", x);
+            LOGGER.info("\nSave result: ({})", x);
             resultService.create(x);
         };
 
@@ -62,11 +62,13 @@ public class JobServiceImpl implements JobService {
     }
 
     private JobReportDTO createJobReport(JobRequestDTO req){
+        LOGGER.info("\nCreate report for: ({})", req);
+
         JobReportDTO report = new JobReportDTO();
         report.setId(req.getId());
         report.setFrn(req.getFrn());
         report.setDateTimeStarted(LocalDateTime.now().toString());
-        report.setStatus(JobStatusDTO.STARTED);
+        report.setStatus(JobStatusDTO.CREATED);
         report.setPercentageComplete(0f);
 
         return reportService.create(report);
