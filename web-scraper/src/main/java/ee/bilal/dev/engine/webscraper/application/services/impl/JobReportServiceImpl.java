@@ -8,6 +8,7 @@ import ee.bilal.dev.engine.webscraper.domain.model.JobReport;
 import ee.bilal.dev.engine.webscraper.domain.repository.JobReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,7 @@ public class JobReportServiceImpl extends BaseGenericService<JobReport, JobRepor
     }
 
     @Override
+    @Transactional
     public Optional<JobReportDTO> updateProgress(String id, float progress) {
         return findOne(id).map(x -> {
             x.setPercentageComplete(x.getPercentageComplete() + progress);

@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 /**
@@ -14,6 +15,7 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor(force = true)
 @AllArgsConstructor(staticName = "of")
 @EqualsAndHashCode(callSuper = true)
+@Table(name = "job_result")
 public class JobResult extends AuditingEntity {
     @NotEmpty
     @NonNull

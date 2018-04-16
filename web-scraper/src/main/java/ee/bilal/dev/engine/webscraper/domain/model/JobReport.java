@@ -14,9 +14,10 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor(force = true)
 @AllArgsConstructor(staticName = "of")
 @EqualsAndHashCode(callSuper = true)
+@Table(name = "job_report")
 public class JobReport extends BaseEntity {
     @Id
-    @Column(columnDefinition = "CHAR(32)", name = "id", updatable = false, nullable = false)
+    @Column(name = "id", updatable = false, nullable = false)
     protected String id;
 
     @NotEmpty

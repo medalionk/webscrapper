@@ -1,12 +1,9 @@
 package ee.bilal.dev.engine.webscraper.application.services.impl;
 
-import ee.bilal.dev.engine.webscraper.application.dtos.JobReportDTO;
 import ee.bilal.dev.engine.webscraper.application.dtos.JobRequestDTO;
 import ee.bilal.dev.engine.webscraper.application.dtos.JobResultDTO;
-import ee.bilal.dev.engine.webscraper.application.dtos.JobStatusDTO;
 import ee.bilal.dev.engine.webscraper.application.services.JobReportService;
 import ee.bilal.dev.engine.webscraper.application.services.ScrapperService;
-import ee.bilal.dev.engine.webscraper.util.UniqueSequence;
 import ee.bilal.dev.engine.webscraper.util.ValidationUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,9 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -35,37 +30,13 @@ public class ScrapperServiceImpl implements ScrapperService {
         this.reportService = reportService;
     }
 
+    @Async
     @Override
-    public void scrapeAsync(List<JobRequestDTO> reqs, Consumer<JobResultDTO> consumer) {
-        ExecutorService executorService = Executors.newFixedThreadPool(10);
-        Set<String> asyncQueues = new HashSet<>();
-
-        LOGGER.info("Create callable tasks.");
-        List<Callable<Set<String>>> callableTasks = new ArrayList<>();
-        for (JobRequestDTO req : reqs) {
-            Set<String> nextLinks = new HashSet<>(Collections.singletonList(req.getUrl()));
-            req.setId(UniqueSequence.getNext());
-            callableTasks.add(() -> scraper(nextLinks, req, consumer));
-        }
-
-        LOGGER.info("Execute callable tasks.");
-        try {
-            List<Future<Set<String>>> futures = executorService.invokeAll(callableTasks);
-            futures.forEach(x -> asyncQueues.addAll(waitResult(x)));
-        } catch (InterruptedException e) {
-            LOGGER.error("Execution intrrupted {}", e.getMessage());
-            Thread.currentThread().interrupt();
-        }
-    }
-
-    //@Async
-    @Override
-    public void scrapeSync(List<JobRequestDTO> reqs, Consumer<JobResultDTO> consumer) {
+    public void scrape(List<JobRequestDTO> reqs, Consumer<JobResultDTO> consumer) {
         Set<String> syncQueues = new HashSet<>();
         for (JobRequestDTO req : reqs) {
             LOGGER.info("Job request for: '{}' ", req);
 
-            req.setId(UniqueSequence.getNext());
             Set<String> nextLinks = new HashSet<>(Collections.singletonList(req.getUrl()));
             syncQueues.addAll(scraper(nextLinks, req, consumer));
         }
@@ -75,22 +46,10 @@ public class ScrapperServiceImpl implements ScrapperService {
     public Set<String> scraper(Set<String> urls, JobRequestDTO req, Consumer<JobResultDTO> consumer){
         Set<String> queue = new HashSet<>();
 
-        JobReportDTO report = createJobReport(req);
         int initCurrentLevel = 0;
         scraper(urls, queue, initCurrentLevel, req, consumer);
 
         return queue;
-    }
-
-    private JobReportDTO createJobReport(JobRequestDTO req){
-        JobReportDTO report = new JobReportDTO();
-        report.setId(req.getId());
-        report.setFrn(req.getFrn());
-        report.setDateTimeStarted(LocalDateTime.now().toString());
-        report.setStatus(JobStatusDTO.STARTED);
-        report.setPercentageComplete(0f);
-
-        return reportService.create(report);
     }
 
     /**
@@ -118,7 +77,6 @@ public class ScrapperServiceImpl implements ScrapperService {
 
                 double approxTotal = Math.pow(linksPerLevel, maxLevel) + 1;
                 reportService.updateProgress(req.getId(), (float) (100 / approxTotal));
-                //percentage += (100 / approxTotal);
                 scraper(nextUrls, queue, currentLevel + 1, req, consumer);
             }
         }
@@ -141,22 +99,6 @@ public class ScrapperServiceImpl implements ScrapperService {
         }
 
         return nextUrls;
-    }
-
-    /**
-     * Blocking wait for future results
-     * @param future
-     * @return
-     */
-    private Set<String> waitResult(Future<Set<String>> future){
-        try {
-            return future.get();
-        } catch (InterruptedException | ExecutionException e) {
-            LOGGER.error("Execution interrupted {}", e.getMessage());
-            Thread.currentThread().interrupt();
-        }
-
-        return new HashSet<>();
     }
 
     /**
