@@ -15,7 +15,6 @@ import java.util.Optional;
 
 @Service
 public class JobReportServiceImpl extends BaseGenericService<JobReport, JobReportDTO> implements JobReportService {
-
     @Autowired
     public JobReportServiceImpl(JobReportRepository repository, JobReportMapper mapper) {
         super(JobReportServiceImpl.class, repository, mapper);

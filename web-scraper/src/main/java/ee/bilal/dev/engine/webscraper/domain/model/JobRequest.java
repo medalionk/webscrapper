@@ -4,8 +4,6 @@ import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.constraints.NotEmpty;
 
 /**
@@ -32,9 +30,4 @@ public class JobRequest extends AuditingEntity {
 
     @Column(name = "links_per_level")
     private int linksPerLevel;
-
-    @NonNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "line_category", columnDefinition="char(32) default 'STARTED'")
-    private JobStatus status;
 }

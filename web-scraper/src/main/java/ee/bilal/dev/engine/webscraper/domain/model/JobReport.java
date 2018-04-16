@@ -37,6 +37,6 @@ public class JobReport extends BaseEntity {
 
     @NonNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "line_category", columnDefinition="char(32) default 'STARTED'")
+    @Column(name = "status", columnDefinition="char(32) default 'CREATED'")
     private JobStatus status;
 }
