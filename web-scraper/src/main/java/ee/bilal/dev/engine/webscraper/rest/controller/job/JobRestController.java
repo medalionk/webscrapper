@@ -6,16 +6,12 @@ import ee.bilal.dev.engine.webscraper.application.services.JobService;
 import ee.bilal.dev.engine.webscraper.rest.controller.RestControllerExceptionFilter;
 import ee.bilal.dev.engine.webscraper.rest.validator.JobRequestValidator;
 import ee.bilal.dev.engine.webscraper.util.ResponseUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -40,14 +36,14 @@ public class JobRestController extends RestControllerExceptionFilter {
     }
 
     @GetMapping
-    public ResponseEntity<List<JobReportDTO>> getAll(HttpServletRequest request) {
+    public ResponseEntity<List<JobReportDTO>> getAll() {
         LOGGER.info("Get all jobs...");
         List<JobReportDTO> jobReports = jobService.getAllJobs();
         return ResponseEntity.ok(jobReports);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<JobReportDTO> getJob(HttpServletRequest request, @PathVariable("id") String id) {
+    public ResponseEntity<JobReportDTO> getJob(@PathVariable("id") String id) {
         LOGGER.info("Get job with id: '{}'", id);
         Optional<JobReportDTO> jobReport = jobService.getJob(id);
         return ResponseUtil.wrapOrNotFound(jobReport);
@@ -55,8 +51,7 @@ public class JobRestController extends RestControllerExceptionFilter {
 
     @PostMapping
     public ResponseEntity<List<JobReportDTO>> process(
-            HttpServletRequest request, @RequestBody List<JobRequestDTO> jobRequests,
-            BindingResult result) {
+            @RequestBody List<JobRequestDTO> jobRequests, BindingResult result) {
         LOGGER.info("Process jobs: '{}'", jobRequests);
 
         handleJobRequestValidations(jobRequests, result);

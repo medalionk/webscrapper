@@ -32,8 +32,6 @@ public class JobResult extends AuditingEntity {
     @Column(name = "url", nullable = false)
     private String url;
 
-    @NotEmpty
-    @NonNull
     @Column(name = "text", columnDefinition = "TEXT")
     private String text;
 }
