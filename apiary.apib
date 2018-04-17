@@ -3,6 +3,8 @@ HOST: http://polls.apiblueprint.org/
 
 # BN
 
+Webscrapper APIUp
+
 ## Jobs Collection [/api/jobs]
 
 ### Get All Jobs [GET]
@@ -11,23 +13,20 @@ HOST: http://polls.apiblueprint.org/
 
         [
             {
-                "jobs": [
-                    {
-                        "id": "1",
-                        "frn": 2,
-                        "status": "ONGOING",
-                        "percentage_complete": 45,
-                        "job_stated": "2018-03-15T15:25:19+00:00",
-                        "job_ended": null
-                    }, {
-                        "id": "1",
-                        "frn": 2,
-                        "status": "COMPLETED",
-                        "percentage_complete": 100,
-                        "job_stated": "2018-03-15T15:25:19+00:00",
-                        "job_ended": "2018-04-15T15:25:19+00:00"
-                    }
-                ]
+                "id": "1",
+                "frn": 2,
+                "status": "ONGOING",
+                "percentageComplete": 45,
+                "dateTimeStarted": "2018-03-15T15:25:19+00:00",
+                "dateTimeCompleted": null
+            }, 
+            {
+                "id": "1",
+                "frn": 2,
+                "status": "COMPLETED",
+                "percentageComplete": 100,
+                "dateTimeStarted": "2018-03-15T15:25:19+00:00",
+                "dateTimeCompleted": "2018-04-15T15:25:19+00:00"
             }
         ]
 
@@ -36,21 +35,22 @@ HOST: http://polls.apiblueprint.org/
 
 + Request (application/json)
 
-        {
-            "companies": [
-                    {
-                        "frn": 1,
-                        "maxLevel": 1,
-                        "url": "https://app.apiary.io/bn4/editor",
-                        "linksPerLevel":10
-                    }, {
-                        "frn": 2,
-                        "maxLevel": 1,
-                        "url": "https://app.apiary.io/bn4/editor",
-                        "linksPerLevel":10
-                    }
-                ]
-        }
+        
+        [
+            {
+                "frn": 1,
+                "maxLevel": 1,
+                "url": "https://app.apiary.io/bn4/editor",
+                "linksPerLevel":10
+            }, 
+            {
+                "frn": 2,
+                "maxLevel": 1,
+                "url": "https://app.apiary.io/bn4/editor",
+                "linksPerLevel":10
+            }
+        ]
+        
 
 + Response 201 (application/json)
 
@@ -60,17 +60,26 @@ HOST: http://polls.apiblueprint.org/
 
     + Body
 
-            {
-            "job_ids": [
-                    {
-                        "id": 1,
-                        "status": "STARTED"
-                    }, {
-                        "id": 2,
-                        "status": "STARTED"
-                    }
-                ]
-            }
+            
+            [
+                {
+                    "id": "1",
+                    "frn": 2,
+                    "status": "ONGOING",
+                    "percentageComplete": 45,
+                    "dateTimeStarted": "2018-03-15T15:25:19+00:00",
+                    "dateTimeCompleted": null
+                }, 
+                {
+                    "id": "1",
+                    "frn": 2,
+                    "status": "COMPLETED",
+                    "percentageComplete": 100,
+                    "dateTimeStarted": "2018-03-15T15:25:19+00:00",
+                    "dateTimeCompleted": "2018-04-15T15:25:19+00:00"
+                }
+            ]
+            
 
 
 ### Fetch a single Job [GET  /api/jobs/{id}]
@@ -84,7 +93,22 @@ HOST: http://polls.apiblueprint.org/
             "id": "1",
             "frn": 2,
             "status": "ONGOING",
-            "percentage_complete": 45,
-            "job_stated": "2018-03-15T15:25:19+00:00",
-            "job_ended": null
+            "percentageComplete": 45,
+            "dateTimeStarted": "2018-03-15T15:25:19+00:00",
+            "dateTimeCompleted": null
+        }
+        
+        
+### Jobs status [GET  /api/jobs/status]
+
+    
+    
++ Response 200 (application/json)
+
+        {
+            "percentCompleted": "27.48",
+            "totalCanceled": 0,
+            "totalCompleted": 1,
+            "totalJobs": 4,
+            "totalOngoing": 1
         }
