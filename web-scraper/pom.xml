@@ -26,6 +26,9 @@
 		<org.projectlombok.version>1.16.14</org.projectlombok.version>
 		<rx.java2.version>2.0.9</rx.java2.version>
 		<jsoup.version>1.11.2</jsoup.version>
+		<commons-validator.version>1.6</commons-validator.version>
+		<commons-lang3.version>3.6</commons-lang3.version>
+		<maven-surefire-plugin>2.12.4</maven-surefire-plugin>
 		<org.springframework.boot.version>1.5.9.RELEASE</org.springframework.boot.version>
         <org.springframework.data.version>2.6.6.RELEASE</org.springframework.data.version>
 	</properties>
@@ -88,11 +91,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.6</version>
-		</dependency>
-		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>${org.projectlombok.version}</version>
@@ -128,7 +126,12 @@
 		<dependency>
 			<groupId>commons-validator</groupId>
 			<artifactId>commons-validator</artifactId>
-			<version>1.6</version>
+			<version>${commons-validator.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -141,7 +144,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.12.4</version>
+				<version>${maven-surefire-plugin}</version>
 				<configuration>
 					<skipTests>true</skipTests>
 				</configuration>
