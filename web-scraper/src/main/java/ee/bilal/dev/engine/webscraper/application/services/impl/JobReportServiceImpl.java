@@ -11,11 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 @Service
 public class JobReportServiceImpl extends BaseGenericService<JobReport, JobReportDTO> implements JobReportService {
@@ -51,6 +49,12 @@ public class JobReportServiceImpl extends BaseGenericService<JobReport, JobRepor
             x.setPercentageComplete(x.getPercentageComplete() + progress);
             x.setStatus(status);
         });
+    }
+
+    @Override
+    @Transactional
+    public Optional<JobReportDTO> updateStatus(String id, JobStatusDTO status) {
+        return updateReport(id, x -> x.setStatus(status));
     }
 
     @Override

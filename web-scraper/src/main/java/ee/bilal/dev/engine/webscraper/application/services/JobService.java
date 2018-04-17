@@ -15,4 +15,5 @@ public interface JobService {
     Optional<JobReportDTO> getJob(String jobId);
     List<JobReportDTO> processJobs(List<JobRequestDTO> requests);
     Map<String,Object> getStatus();
+    void stopOngoingJobs();
 }

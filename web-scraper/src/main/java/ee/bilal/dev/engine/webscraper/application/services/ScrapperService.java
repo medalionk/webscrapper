@@ -13,4 +13,5 @@ import java.util.function.Consumer;
 public interface ScrapperService {
     void scrape(List<JobRequestDTO> reqs, Consumer<JobResultDTO> consumer);
     Set<String> scraper(Set<String> urls, JobRequestDTO req, Consumer<JobResultDTO> consumer);
+    void stopAll();
 }

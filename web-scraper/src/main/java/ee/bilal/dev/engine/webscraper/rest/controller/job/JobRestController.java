@@ -67,6 +67,14 @@ public class JobRestController extends RestControllerExceptionFilter {
         return ResponseEntity.ok(jobService.getStatus());
     }
 
+    @GetMapping("/stop-all")
+    public ResponseEntity<String> stopOngoingJobs() {
+        LOGGER.info("Stop all ongoing jobs.");
+
+        jobService.stopOngoingJobs();
+        return ResponseEntity.ok("Jobs Cancellation Initiated...");
+    }
+
     private void handleJobRequestValidations(List<JobRequestDTO> requests, BindingResult result){
         requests.forEach(x -> handleJobRequestValidation(x, result));
     }

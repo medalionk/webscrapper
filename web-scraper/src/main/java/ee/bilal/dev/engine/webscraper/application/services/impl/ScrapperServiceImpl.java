@@ -21,6 +21,7 @@ import java.net.UnknownHostException;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -28,17 +29,19 @@ import java.util.stream.Collectors;
 public class ScrapperServiceImpl implements ScrapperService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ScrapperServiceImpl.class);
     private final JobReportService reportService;
-    private final ExecutorService executorService;
+    private final ApplicationConfig config;
+    private ExecutorService executorService;
 
     @Autowired
     public ScrapperServiceImpl(JobReportService reportService, ApplicationConfig config) {
         this.reportService = reportService;
-        this.executorService = Executors.newFixedThreadPool(config.getPoolSize());
+        this.config = config;
     }
 
     @Async
     @Override
     public void scrape(List<JobRequestDTO> reqs, Consumer<JobResultDTO> consumer) {
+        initExecutorService();
         for (JobRequestDTO req : reqs) {
             LOGGER.info("Job request for: '{}' ", req);
 
@@ -59,6 +62,11 @@ public class ScrapperServiceImpl implements ScrapperService {
         scraper(urls, queue, initCurrentLevel, req, consumer);
 
         return queue;
+    }
+
+    @Override
+    public void stopAll() {
+        shutdownAndAwaitTermination(executorService);
     }
 
     /**
@@ -148,5 +156,50 @@ public class ScrapperServiceImpl implements ScrapperService {
         }
 
         return new ArrayList<>();
+    }
+
+    /**
+     * Initialize executor service when new or after shutdown
+     */
+    private void initExecutorService(){
+        if(executorService == null || executorService.isShutdown()){
+            executorService = Executors.newFixedThreadPool(config.getPoolSize());
+        }
+    }
+    /**
+     * Shutdown ongoing jobs
+     * @param pool executor service pool
+     */
+    private void shutdownAndAwaitTermination(ExecutorService pool) {
+        if(pool == null) return;
+
+        final long timeout = 5;
+
+        pool.shutdown(); // Disable new tasks from being submitted
+        try {
+            // Wait a while for existing tasks to terminate
+            if (!pool.awaitTermination(timeout, TimeUnit.SECONDS)) {
+                pool.shutdownNow(); // Cancel currently executing tasks
+                // Wait a while for tasks to respond to being cancelled
+                if (!pool.awaitTermination(timeout, TimeUnit.SECONDS))
+                    LOGGER.error("Pool did not terminate");
+            }
+
+            updateCanceledReports();
+        } catch (InterruptedException ie) {
+            // (Re-)Cancel if current thread also interrupted
+            pool.shutdownNow();
+            // Preserve interrupt status
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    /**
+     * Update reports to indicate cancellation
+     */
+    private void updateCanceledReports() {
+        reportService.findAll().stream()
+                .filter(x -> x.getStatus() == JobStatusDTO.CREATED)
+                .forEach(x -> reportService.updateStatus(x.getId(), JobStatusDTO.CANCELED));
     }
 }

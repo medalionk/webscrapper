@@ -8,6 +8,7 @@ import ee.bilal.dev.engine.webscraper.application.services.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -61,6 +62,12 @@ public class JobServiceImpl implements JobService {
     @Override
     public Map<String,Object> getStatus() {
         return reportService.getStatus();
+    }
+
+    @Override
+    @Async
+    public void stopOngoingJobs() {
+        scrapperService.stopAll();
     }
 
     private List<JobReportDTO> createJobReports(List<JobRequestDTO> requests){
