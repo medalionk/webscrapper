@@ -34,12 +34,12 @@ public class ScrapperServiceImpl implements ScrapperService {
     @Async
     @Override
     public void scrape(List<JobRequestDTO> reqs, Consumer<JobResultDTO> consumer) {
-        Set<String> syncQueues = new HashSet<>();
+        Set<String> queues = new HashSet<>();
         for (JobRequestDTO req : reqs) {
             LOGGER.info("Job request for: '{}' ", req);
 
             Set<String> nextLinks = new HashSet<>(Collections.singletonList(req.getUrl()));
-            syncQueues.addAll(scraper(nextLinks, req, consumer));
+            queues.addAll(scraper(nextLinks, req, consumer));
 
             // Job is completed. Update report.
             reportService.markCompleted(req.getId());
