@@ -9,8 +9,8 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource(value = "classpath:application.properties", encoding="UTF-8")
 public class ApplicationConfig {
     @Getter
-    @Value("${core-pool-size}")
-    private int corePoolSize;
+    @Value("${pool-size}")
+    private int poolSize;
 
     @Getter
     @Value("${max-pool-size}")

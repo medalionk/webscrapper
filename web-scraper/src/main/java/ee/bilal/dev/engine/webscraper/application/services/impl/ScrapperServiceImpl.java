@@ -5,6 +5,7 @@ import ee.bilal.dev.engine.webscraper.application.dtos.JobResultDTO;
 import ee.bilal.dev.engine.webscraper.application.dtos.JobStatusDTO;
 import ee.bilal.dev.engine.webscraper.application.services.JobReportService;
 import ee.bilal.dev.engine.webscraper.application.services.ScrapperService;
+import ee.bilal.dev.engine.webscraper.configurations.ApplicationConfig;
 import ee.bilal.dev.engine.webscraper.util.ValidationUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,6 +19,8 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -25,24 +28,26 @@ import java.util.stream.Collectors;
 public class ScrapperServiceImpl implements ScrapperService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ScrapperServiceImpl.class);
     private final JobReportService reportService;
+    private final ExecutorService executorService;
 
     @Autowired
-    public ScrapperServiceImpl(JobReportService reportService) {
+    public ScrapperServiceImpl(JobReportService reportService, ApplicationConfig config) {
         this.reportService = reportService;
+        this.executorService = Executors.newFixedThreadPool(config.getPoolSize());
     }
 
     @Async
     @Override
     public void scrape(List<JobRequestDTO> reqs, Consumer<JobResultDTO> consumer) {
-        Set<String> queues = new HashSet<>();
         for (JobRequestDTO req : reqs) {
             LOGGER.info("Job request for: '{}' ", req);
 
-            Set<String> nextLinks = new HashSet<>(Collections.singletonList(req.getUrl()));
-            queues.addAll(scraper(nextLinks, req, consumer));
+            executorService.submit(() -> {
+                Set<String> nextLinks = new HashSet<>(Collections.singletonList(req.getUrl()));
+                scraper(nextLinks, req, consumer);
 
-            // Job is completed. Update report.
-            reportService.markCompleted(req.getId());
+                reportService.markCompleted(req.getId());
+            });
         }
     }
 
