@@ -22,7 +22,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
     }
 
     /**
-     * Executed before after handler is executed
+     * Executed after handler is executed
      **/
     @Override
     public void postHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler, final ModelAndView modelAndView) throws Exception {

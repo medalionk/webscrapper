@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b29b018c-89bd-49c9-8e9c-5f96a8f94e3c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/model/JobResult.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/model/JobResult.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/controller/job/JobRestController.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/controller/job/JobRestController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/configurations/LoggerInterceptor.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/configurations/LoggerInterceptor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/configurations/WebMvcConfiguration.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/configurations/WebMvcConfiguration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/web-scraper/src/main/resources/application.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -29,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web-scraper/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="127" column="20" lean-forward="true" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
+            <state relative-caret-position="264">
+              <caret line="126" column="21" lean-forward="true" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -42,23 +43,9 @@
       <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web-scraper/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="40" lean-forward="false" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+            <state relative-caret-position="195">
+              <caret line="13" column="16" lean-forward="false" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoggerInterceptor.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/configurations/LoggerInterceptor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3022#3023#0" expanded="true" />
-                <element signature="e#3088#3089#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -66,26 +53,14 @@
       <file leaf-file-name="WebMvcConfiguration.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/configurations/WebMvcConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="35" column="20" lean-forward="true" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
+            <state relative-caret-position="210">
+              <caret line="14" column="32" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#498#499#0" expanded="true" />
-                <element signature="e#560#561#0" expanded="true" />
-                <element signature="e#640#641#0" expanded="true" />
-                <element signature="e#704#705#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JobRequestDTO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/dtos/JobRequestDTO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="24" column="22" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#692#693#0" expanded="true" />
+                <element signature="e#754#755#0" expanded="true" />
+                <element signature="e#834#835#0" expanded="true" />
+                <element signature="e#898#899#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -94,7 +69,7 @@
       <file leaf-file-name="JobServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/services/impl/JobServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
+            <state relative-caret-position="-38">
               <caret line="53" column="36" lean-forward="false" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -103,28 +78,6 @@
                 <element signature="e#1643#1644#0" expanded="true" />
                 <element signature="e#1691#1692#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JobResult.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/model/JobResult.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JobResultDTO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/dtos/JobResultDTO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -192,14 +145,14 @@
         <option value="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/services/impl/JobServiceImpl.java" />
         <option value="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/services/impl/ScrapperServiceImpl.java" />
         <option value="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/services/impl/JobReportServiceImpl.java" />
-        <option value="$PROJECT_DIR$/web-scraper/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/web-scraper/pom.xml" />
         <option value="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/controller/RestControllerExceptionFilter.java" />
         <option value="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/controller/job/JobRestController.java" />
         <option value="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/validator/JobRequestValidator.java" />
-        <option value="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/configurations/WebMvcConfiguration.java" />
         <option value="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/model/JobResult.java" />
         <option value="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/configurations/LoggerInterceptor.java" />
+        <option value="$PROJECT_DIR$/web-scraper/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/configurations/WebMvcConfiguration.java" />
       </list>
     </option>
   </component>
@@ -765,12 +718,12 @@
       <workItem from="1523113634936" duration="3235000" />
       <workItem from="1523386535949" duration="48000" />
       <workItem from="1523496737569" duration="926000" />
-      <workItem from="1523684394378" duration="64336000" />
+      <workItem from="1523684394378" duration="64563000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75633000" />
+    <option name="totallyTimeSpent" value="75860000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -1156,28 +1109,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/services/impl/JobServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="53" column="36" lean-forward="false" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1528#1529#0" expanded="true" />
-            <element signature="e#1574#1575#0" expanded="true" />
-            <element signature="e#1643#1644#0" expanded="true" />
-            <element signature="e#1691#1692#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web-scraper/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="127" column="20" lean-forward="true" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/controller/job/JobRestController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1216,16 +1147,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/dtos/JobRequestDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="24" column="22" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.0.5.RELEASE/spring-context-5.0.5.RELEASE.jar!/org/springframework/validation/Validator.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1248,31 +1169,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/configurations/LoggerInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="15" lean-forward="false" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3015#3016#0" expanded="true" />
+            <element signature="e#3081#3082#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web-scraper/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="40" lean-forward="false" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+        <state relative-caret-position="195">
+          <caret line="13" column="16" lean-forward="false" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/dtos/JobRequestDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-182">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/configurations/WebMvcConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="35" column="20" lean-forward="true" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
+        <state relative-caret-position="210">
+          <caret line="14" column="32" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-            <element signature="e#560#561#0" expanded="true" />
-            <element signature="e#640#641#0" expanded="true" />
-            <element signature="e#704#705#0" expanded="true" />
+            <element signature="e#692#693#0" expanded="true" />
+            <element signature="e#754#755#0" expanded="true" />
+            <element signature="e#834#835#0" expanded="true" />
+            <element signature="e#898#899#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/model/JobResult.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
+        <state relative-caret-position="495">
           <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1282,21 +1225,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/dtos/JobResultDTO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
+        <state relative-caret-position="22">
           <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/configurations/LoggerInterceptor.java">
+    <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/services/impl/JobServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="30" />
+        <state relative-caret-position="-38">
+          <caret line="53" column="36" lean-forward="false" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3022#3023#0" expanded="true" />
-            <element signature="e#3088#3089#0" expanded="true" />
+            <element signature="e#1528#1529#0" expanded="true" />
+            <element signature="e#1574#1575#0" expanded="true" />
+            <element signature="e#1643#1644#0" expanded="true" />
+            <element signature="e#1691#1692#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web-scraper/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="126" column="21" lean-forward="true" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
