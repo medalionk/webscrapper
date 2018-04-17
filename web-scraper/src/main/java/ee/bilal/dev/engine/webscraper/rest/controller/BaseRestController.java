@@ -22,27 +22,27 @@ public class BaseRestController<T extends DTO> extends RestControllerExceptionFi
 
     @Override
     public ResponseEntity<List<T>> getAll() {
-        LOGGER.info("Get all entities");
+        logger.info("Get all entities");
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<T> get(String id) {
-        LOGGER.info("Get all entity with id: '{}'", id);
+        logger.info("Get all entity with id: '{}'", id);
         ValidationUtil.validateIdentity(id);
         return ResponseUtil.wrapOrNotFound(service.findOne(id));
     }
 
     @Override
     public ResponseEntity<T> create(T entity) {
-        LOGGER.info("Persist entity {} in db", entity);
+        logger.info("Persist entity {} in db", entity);
         ValidationUtil.validateEntity(entity);
         return new ResponseEntity<>(service.create(entity), HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<T> update(T entity) {
-        LOGGER.info("Update '{}' entity", entity);
+        logger.info("Update '{}' entity", entity);
         ValidationUtil.validateEntity(entity);
         return ResponseUtil.wrapOrNotFound(service.update(entity));
     }
@@ -50,7 +50,7 @@ public class BaseRestController<T extends DTO> extends RestControllerExceptionFi
     @Override
     public ResponseEntity<Void> delete(String id) {
         ValidationUtil.validateIdentity(id);
-        LOGGER.info("Delete entity with id: '{}'", id);
+        logger.info("Delete entity with id: '{}'", id);
         service.delete(id);
         return ResponseEntity.ok().build();
     }

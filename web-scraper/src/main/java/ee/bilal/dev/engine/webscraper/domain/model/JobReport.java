@@ -1,7 +1,6 @@
 package ee.bilal.dev.engine.webscraper.domain.model;
 
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;

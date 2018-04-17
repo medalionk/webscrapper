@@ -38,14 +38,14 @@ public class JobRestController extends RestControllerExceptionFilter {
 
     @GetMapping
     public ResponseEntity<List<JobReportDTO>> getAll() {
-        LOGGER.info("Get all jobs...");
+        logger.info("Get all jobs...");
         List<JobReportDTO> jobReports = jobService.getAllJobs();
         return ResponseEntity.ok(jobReports);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<JobReportDTO> getJob(@PathVariable("id") String id) {
-        LOGGER.info("Get job with id: '{}'", id);
+        logger.info("Get job with id: '{}'", id);
         Optional<JobReportDTO> jobReport = jobService.getJob(id);
         return ResponseUtil.wrapOrNotFound(jobReport);
     }
@@ -53,7 +53,7 @@ public class JobRestController extends RestControllerExceptionFilter {
     @PostMapping
     public ResponseEntity<List<JobReportDTO>> process(
             @RequestBody List<JobRequestDTO> jobRequests, BindingResult result) {
-        LOGGER.info("Process jobs: '{}'", jobRequests);
+        logger.info("Process jobs: '{}'", jobRequests);
 
         handleJobRequestValidations(jobRequests, result);
         List<JobReportDTO> jobReports = jobService.processJobs(jobRequests);
@@ -62,14 +62,14 @@ public class JobRestController extends RestControllerExceptionFilter {
 
     @GetMapping("/status")
     public ResponseEntity<Map<String,Object>> getStatus() {
-        LOGGER.info("Get jobs status.");
+        logger.info("Get jobs status.");
 
         return ResponseEntity.ok(jobService.getStatus());
     }
 
     @GetMapping("/stop-all")
     public ResponseEntity<String> stopOngoingJobs() {
-        LOGGER.info("Stop all ongoing jobs.");
+        logger.info("Stop all ongoing jobs.");
 
         jobService.stopOngoingJobs();
         return ResponseEntity.ok("Jobs Cancellation Initiated...");

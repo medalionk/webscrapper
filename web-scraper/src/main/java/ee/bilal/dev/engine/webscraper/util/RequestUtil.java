@@ -23,9 +23,12 @@ import java.nio.charset.Charset;
 public final class RequestUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(RequestUtil.class);
 
+    private RequestUtil() {
+    }
+
     public static ResponseEntity<String> makeRequest (
             RestTemplate restTemplate, String url, String body, HttpMethod method, HttpHeaders headers) {
-        return makeRequest(restTemplate, url, body, method, null);
+        return makeRequest(restTemplate, url, body, null, method, headers);
     }
 
     public static ResponseEntity<String> makeRequest (

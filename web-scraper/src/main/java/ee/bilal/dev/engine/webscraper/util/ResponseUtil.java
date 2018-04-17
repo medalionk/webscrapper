@@ -1,7 +1,5 @@
 package ee.bilal.dev.engine.webscraper.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +10,6 @@ import java.util.Map;
 import java.util.Optional;
 
 public final class ResponseUtil {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ResponseUtil.class);
-
     private ResponseUtil() {
     }
 
@@ -39,7 +35,7 @@ public final class ResponseUtil {
     }
 
     public static <X> ResponseEntity<X> wrapOrNotFound(Optional<X> maybeResponse, HttpHeaders header) {
-        return maybeResponse.map(x -> (ResponseEntity.ok().headers(header)).body(x))
+        return maybeResponse.map((ResponseEntity.ok().headers(header))::body)
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

@@ -19,20 +19,20 @@ import java.util.stream.Collectors;
  */
 @Service
 public abstract class BaseGenericService<U extends BaseEntity, T extends DTO<U>> implements GenericService<T> {
-    protected final Logger LOGGER;
+    protected final Logger logger;
     protected final JpaRepository<U, String> repository;
     protected final BaseMapper<T, U> mapper;
 
     protected <S extends BaseGenericService>BaseGenericService(
             Class<S> tClass, JpaRepository<U, String> repository, BaseMapper<T, U> mapper) {
-        this.LOGGER = LoggerFactory.getLogger(tClass);
+        this.logger = LoggerFactory.getLogger(tClass);
         this.repository = repository;
         this.mapper = mapper;
     }
 
     @Override
     public T create(T entity) {
-        LOGGER.info("Create entity: '{}'", entity);
+        logger.info("Create entity: '{}'", entity);
         ValidationUtil.validateEntity(entity);
         U savedEntity = repository.saveAndFlush(entity.asEntity());
         return mapper.toDTO(savedEntity);
@@ -40,7 +40,7 @@ public abstract class BaseGenericService<U extends BaseEntity, T extends DTO<U>>
 
     @Override
     public Optional<T> update(T entity){
-        LOGGER.info("Update entity: '{}'", entity);
+        logger.info("Update entity: '{}'", entity);
         ValidationUtil.validateEntity(entity);
         return Optional.ofNullable(repository.saveAndFlush(entity.asEntity()))
                 .map(mapper::toDTO);
@@ -48,7 +48,7 @@ public abstract class BaseGenericService<U extends BaseEntity, T extends DTO<U>>
 
     @Override
     public Optional<T> findOne(String id) {
-        LOGGER.info("Fetch one entity with id: '{}'", id);
+        logger.info("Fetch one entity with id: '{}'", id);
         ValidationUtil.validateIdentity(id);
         U entity = repository.getOne(id);
         return Optional.ofNullable(entity).map(mapper::toDTO);
@@ -56,10 +56,10 @@ public abstract class BaseGenericService<U extends BaseEntity, T extends DTO<U>>
 
     @Override
     public List<T> findAll(){
-        LOGGER.info("Fetch all entities found");
+        logger.info("Fetch all entities found");
         List<U> results = repository.findAll();
         if(results.isEmpty()) {
-            LOGGER.info("No entities found");
+            logger.info("No entities found");
             return new ArrayList<>();
         }
 
@@ -68,7 +68,7 @@ public abstract class BaseGenericService<U extends BaseEntity, T extends DTO<U>>
 
     @Override
     public void delete(String id){
-        LOGGER.info("Delete entity with id: '{}'", id);
+        logger.info("Delete entity with id: '{}'", id);
         ValidationUtil.validateIdentity(id);
 
         Optional<T> t = findOne(id);

@@ -6,14 +6,11 @@ import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface JobResultMapper extends BaseMapper<JobResultDTO, JobResult> {
-    JobResultMapper INSTANCE = Mappers.getMapper(JobResultMapper.class );
-
     @Mappings({
             @Mapping(target = "createdDate", ignore = true),
             @Mapping(target = "lastModifiedDate", ignore = true),

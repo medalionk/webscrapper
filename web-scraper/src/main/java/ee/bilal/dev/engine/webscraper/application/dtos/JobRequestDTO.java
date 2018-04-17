@@ -1,8 +1,11 @@
 package ee.bilal.dev.engine.webscraper.application.dtos;
 
-import ee.bilal.dev.engine.webscraper.application.mappers.JobRequestMapper;
+import ee.bilal.dev.engine.webscraper.application.mappers.Mappers;
 import ee.bilal.dev.engine.webscraper.domain.model.JobRequest;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
@@ -42,6 +45,6 @@ public class JobRequestDTO implements DTO<JobRequest> {
 
     @Override
     public JobRequest asEntity() {
-        return JobRequestMapper.INSTANCE.toEntity(this);
+        return Mappers.JOB_REQUEST_MAPPER.toEntity(this);
     }
 }
