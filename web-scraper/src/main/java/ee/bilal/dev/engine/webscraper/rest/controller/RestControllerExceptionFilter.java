@@ -41,28 +41,28 @@ public class RestControllerExceptionFilter {
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<Map<String,String>> handleResourceNotFoundException(ResourceNotFoundException ex) {
-        LOGGER.error(String.format("The resource was not found: %s", ex.getMessage()));
+        LOGGER.error("The resource was not found: {}", ex.getMessage());
         return ResponseUtil.exceptionResponseBuilder(HttpStatus.NOT_FOUND, ex);
     }
 
     @ExceptionHandler(MalformedURLException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Map<String,String>> handleMalformedURLException(MalformedURLException ex) {
-        LOGGER.error(String.format("Malformed URL: %s", ex.getMessage()));
+        LOGGER.error("Malformed URL: {}", ex.getMessage());
         return ResponseUtil.exceptionResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR, ex);
     }
 
     @ExceptionHandler(DataAccessException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Map<String,String>> handleDataAccessException(DataAccessException ex) {
-        LOGGER.error(String.format("Data access error: %s", ex.getMessage()));
+        LOGGER.error("Data access error: {}", ex.getMessage());
         return ResponseUtil.exceptionResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR, ex);
     }
 
     @ExceptionHandler(ServiceException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Map<String,String>> handleServiceException(ServiceException ex) {
-        LOGGER.error(String.format("Service error: %s", ex.getMessage()));
+        LOGGER.error("Service error: {}", ex.getMessage());
         return ResponseUtil.exceptionResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR, ex);
     }
 }

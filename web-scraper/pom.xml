@@ -88,6 +88,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.6</version>
+		</dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>${org.projectlombok.version}</version>
@@ -119,6 +124,11 @@
 			<groupId>io.reactivex.rxjava2</groupId>
 			<artifactId>rxjava</artifactId>
 			<version>${rx.java2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.6</version>
 		</dependency>
 	</dependencies>
 
