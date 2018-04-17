@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -55,6 +57,11 @@ public class JobServiceImpl implements JobService {
         scrapperService.scrape(savedRequests, consumer);
 
         return reports;
+    }
+
+    @Override
+    public Map<String,Object> getStatus() {
+        return reportService.getStatus();
     }
 
     private List<JobReportDTO> createJobReports(List<JobRequestDTO> requests){

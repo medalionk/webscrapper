@@ -11,14 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 @Service
 public class JobReportServiceImpl extends BaseGenericService<JobReport, JobReportDTO> implements JobReportService {
+    private static final double HUNDRED_PERCENT = 100.0;
+
     @Autowired
     public JobReportServiceImpl(JobReportRepository repository, JobReportMapper mapper) {
         super(JobReportServiceImpl.class, repository, mapper);
@@ -59,6 +61,36 @@ public class JobReportServiceImpl extends BaseGenericService<JobReport, JobRepor
             x.setStatus(JobStatusDTO.COMPLETED);
             x.setDateTimeCompleted(LocalDateTime.now().toString());
         });
+    }
+
+    @Override
+    public Map<String,Object> getStatus() {
+        Map<String,Object> status = new HashMap<>();
+        List<JobReportDTO> reports = findAll();
+        long totalJobs = reports.size();
+        long totalCompleted = statusCount(reports, JobStatusDTO.COMPLETED);
+        long totalOngoing = statusCount(reports, JobStatusDTO.ONGOING);
+        long totalCanceled = statusCount(reports, JobStatusDTO.CANCELED);
+        double percentCompleted = getPercentCompleted(reports);
+
+        status.put("totalJobs", totalJobs);
+        status.put("totalCompleted", totalCompleted);
+        status.put("totalOngoing", totalOngoing);
+        status.put("totalCanceled", totalCanceled);
+        status.put("percentCompleted", String.format("%.2f", percentCompleted));
+
+        return status;
+    }
+
+    private double getPercentCompleted(List<JobReportDTO> reports){
+        double total = reports.size() * HUNDRED_PERCENT;
+        double progress = reports.stream().mapToDouble(JobReportDTO::getPercentageComplete).sum();
+
+        return (progress / total) * HUNDRED_PERCENT;
+    }
+
+    private long statusCount(List<JobReportDTO> reports, JobStatusDTO status){
+        return reports.stream().filter(x -> x.getStatus() == status).count();
     }
 
     @Transactional

@@ -13,6 +13,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -57,6 +58,13 @@ public class JobRestController extends RestControllerExceptionFilter {
         handleJobRequestValidations(jobRequests, result);
         List<JobReportDTO> jobReports = jobService.processJobs(jobRequests);
         return ResponseEntity.ok(jobReports);
+    }
+
+    @GetMapping("/status")
+    public ResponseEntity<Map<String,Object>> getStatus() {
+        LOGGER.info("Get jobs status.");
+
+        return ResponseEntity.ok(jobService.getStatus());
     }
 
     private void handleJobRequestValidations(List<JobRequestDTO> requests, BindingResult result){

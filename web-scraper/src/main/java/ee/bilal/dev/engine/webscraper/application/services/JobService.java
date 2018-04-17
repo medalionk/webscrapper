@@ -4,6 +4,7 @@ import ee.bilal.dev.engine.webscraper.application.dtos.JobReportDTO;
 import ee.bilal.dev.engine.webscraper.application.dtos.JobRequestDTO;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -13,4 +14,5 @@ public interface JobService {
     List<JobReportDTO> getAllJobs();
     Optional<JobReportDTO> getJob(String jobId);
     List<JobReportDTO> processJobs(List<JobRequestDTO> requests);
+    Map<String,Object> getStatus();
 }
