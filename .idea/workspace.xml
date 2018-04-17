@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b29b018c-89bd-49c9-8e9c-5f96a8f94e3c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/dtos/JobReportDTO.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/dtos/JobReportDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/dtos/JobRequestDTO.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/dtos/JobRequestDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/dtos/JobResultDTO.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/dtos/JobResultDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/mappers/JobReportMapper.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/mappers/JobReportMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/mappers/JobRequestMapper.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/mappers/JobRequestMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/mappers/JobResultMapper.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/mappers/JobResultMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/services/BaseGenericService.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/services/BaseGenericService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/model/JobReport.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/model/JobReport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/controller/BaseRestController.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/controller/BaseRestController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/controller/RestControllerExceptionFilter.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/controller/RestControllerExceptionFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/controller/job/JobRestController.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/controller/job/JobRestController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/util/IdFactory.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/util/IdFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/util/RequestUtil.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/util/RequestUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/util/ResponseUtil.java" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/util/ResponseUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -64,8 +51,8 @@
       <file leaf-file-name="AuditingEntity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/model/AuditingEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="20" column="22" lean-forward="false" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+            <state relative-caret-position="255">
+              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -75,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/dtos/JobReportDTO.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#800#801#0" expanded="true" />
@@ -277,302 +264,6 @@
               <item name="engine" type="b2602c69:ProjectViewProjectNode" />
               <item name="engine" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="webscraper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="webscraper" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="webscraper" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="dtos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="webscraper" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="mappers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="webscraper" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="webscraper" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="webscraper" type="462c0819:PsiDirectoryNode" />
-              <item name="configurations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="webscraper" type="462c0819:PsiDirectoryNode" />
-              <item name="domain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="webscraper" type="462c0819:PsiDirectoryNode" />
-              <item name="domain" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="webscraper" type="462c0819:PsiDirectoryNode" />
-              <item name="domain" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="webscraper" type="462c0819:PsiDirectoryNode" />
-              <item name="rest" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="webscraper" type="462c0819:PsiDirectoryNode" />
-              <item name="rest" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="webscraper" type="462c0819:PsiDirectoryNode" />
-              <item name="rest" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="job" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="webscraper" type="462c0819:PsiDirectoryNode" />
-              <item name="rest" type="462c0819:PsiDirectoryNode" />
-              <item name="validator" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ee" type="462c0819:PsiDirectoryNode" />
-              <item name="bilal" type="462c0819:PsiDirectoryNode" />
-              <item name="dev" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="webscraper" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="web-scraper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -766,12 +457,12 @@
       <workItem from="1523113634936" duration="3235000" />
       <workItem from="1523386535949" duration="48000" />
       <workItem from="1523496737569" duration="926000" />
-      <workItem from="1523684394378" duration="77616000" />
+      <workItem from="1523684394378" duration="77753000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88913000" />
+    <option name="totallyTimeSpent" value="89050000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -792,13 +483,13 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="SonarLint" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1255,7 +946,7 @@
     <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/dtos/JobReportDTO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#800#801#0" expanded="true" />
@@ -1298,8 +989,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/domain/model/AuditingEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="20" column="22" lean-forward="false" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+        <state relative-caret-position="255">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
