@@ -35,6 +35,8 @@ queue-capacity={queue capacity}
 After creating the executable jar, run the application using java -jar, as shown below:
 
 ```
+/etc/alternatives/java -Dspring.datasource.url=jdbc:mysql://localhost:3306/scrapper -Dspring.datasource.username=green -Dspring.datasource.password=a9b8c7 -Dlogging.path=/home/leaf/backend/ -jar /executable/web-scraper-0.0.1-SNAPSHOT.jar
+
 java -jar web-scraper/target/web-scraper-0.0.1-SNAPSHOT.jar
 ```
 
