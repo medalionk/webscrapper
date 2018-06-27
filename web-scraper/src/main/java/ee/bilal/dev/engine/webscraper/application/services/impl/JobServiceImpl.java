@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 @Service
 public class JobServiceImpl implements JobService {
     private static final Logger LOGGER = LoggerFactory.getLogger(JobServiceImpl.class);
+    private static final float ZERO_PERCENT = 0.0f;
+
     private final ScrapperService scrapperService;
     private final JobRequestService requestService;
     private final JobResultService resultService;
@@ -70,10 +72,20 @@ public class JobServiceImpl implements JobService {
         scrapperService.stopAll();
     }
 
+    /**
+     * Create job reports
+     * @param requests for jobs
+     * @return list of job reports
+     */
     private List<JobReportDTO> createJobReports(List<JobRequestDTO> requests){
         return requests.stream().map(this::createJobReport).collect(Collectors.toList());
     }
 
+    /**
+     * Create job reports
+     * @param req for job
+     * @return job report
+     */
     private JobReportDTO createJobReport(JobRequestDTO req){
         LOGGER.info("\nCreate report for: ({})", req);
 
@@ -82,7 +94,7 @@ public class JobServiceImpl implements JobService {
         report.setFrn(req.getFrn());
         report.setDateTimeStarted(LocalDateTime.now().toString());
         report.setStatus(JobStatusDTO.CREATED);
-        report.setPercentageComplete(0f);
+        report.setPercentageComplete(ZERO_PERCENT);
 
         return reportService.create(report);
     }

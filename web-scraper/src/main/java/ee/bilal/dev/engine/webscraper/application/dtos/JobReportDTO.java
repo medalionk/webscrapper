@@ -1,6 +1,6 @@
 package ee.bilal.dev.engine.webscraper.application.dtos;
 
-import ee.bilal.dev.engine.webscraper.application.mappers.Mappers;
+import ee.bilal.dev.engine.webscraper.application.mappers.JobMapper;
 import ee.bilal.dev.engine.webscraper.domain.model.JobReport;
 import lombok.*;
 
@@ -34,6 +34,6 @@ public class JobReportDTO implements DTO<JobReport> {
 
     @Override
     public JobReport asEntity() {
-        return Mappers.JOB_REPORT_MAPPER.toEntity(this);
+        return JobMapper.JOB_REPORT_MAPPER.toEntity(this);
     }
 }

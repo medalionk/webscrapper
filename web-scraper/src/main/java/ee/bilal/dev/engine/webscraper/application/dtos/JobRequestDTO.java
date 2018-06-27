@@ -1,6 +1,6 @@
 package ee.bilal.dev.engine.webscraper.application.dtos;
 
-import ee.bilal.dev.engine.webscraper.application.mappers.Mappers;
+import ee.bilal.dev.engine.webscraper.application.mappers.JobMapper;
 import ee.bilal.dev.engine.webscraper.domain.model.JobRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -33,18 +33,8 @@ public class JobRequestDTO implements DTO<JobRequest> {
     private Instant createdDate;
     private Instant lastModifiedDate;
 
-    public static JobRequestDTO of(String url, String frn, int maxLevel, int linksPerLevel){
-        JobRequestDTO request = new JobRequestDTO();
-        request.setUrl(url);
-        request.setFrn(frn);
-        request.setMaxLevel(maxLevel);
-        request.setLinksPerLevel(linksPerLevel);
-
-        return request;
-    }
-
     @Override
     public JobRequest asEntity() {
-        return Mappers.JOB_REQUEST_MAPPER.toEntity(this);
+        return JobMapper.JOB_REQUEST_MAPPER.toEntity(this);
     }
 }

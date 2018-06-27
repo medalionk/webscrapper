@@ -8,7 +8,6 @@ import org.springframework.validation.Validator;
 
 @Service
 public class JobRequestValidator implements Validator {
-
     @Override
     public boolean supports(Class clazz) {
         return JobRequestDTO.class.equals(clazz);

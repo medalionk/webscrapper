@@ -33,30 +33,37 @@ public abstract class BaseGenericService<U extends BaseEntity, T extends DTO<U>>
     @Override
     public T create(T entity) {
         logger.info("Create entity: '{}'", entity);
+
         ValidationUtil.validateEntity(entity);
         U savedEntity = repository.saveAndFlush(entity.asEntity());
+
         return mapper.toDTO(savedEntity);
     }
 
     @Override
     public Optional<T> update(T entity){
         logger.info("Update entity: '{}'", entity);
+
         ValidationUtil.validateEntity(entity);
-        return Optional.ofNullable(repository.saveAndFlush(entity.asEntity()))
+
+        return Optional.of(repository.saveAndFlush(entity.asEntity()))
                 .map(mapper::toDTO);
     }
 
     @Override
     public Optional<T> findOne(String id) {
         logger.info("Fetch one entity with id: '{}'", id);
+
         ValidationUtil.validateIdentity(id);
         U entity = repository.getOne(id);
-        return Optional.ofNullable(entity).map(mapper::toDTO);
+
+        return Optional.of(entity).map(mapper::toDTO);
     }
 
     @Override
     public List<T> findAll(){
         logger.info("Fetch all entities found");
+
         List<U> results = repository.findAll();
         if(results.isEmpty()) {
             logger.info("No entities found");
@@ -69,6 +76,7 @@ public abstract class BaseGenericService<U extends BaseEntity, T extends DTO<U>>
     @Override
     public void delete(String id){
         logger.info("Delete entity with id: '{}'", id);
+
         ValidationUtil.validateIdentity(id);
 
         Optional<T> t = findOne(id);
@@ -86,8 +94,10 @@ public abstract class BaseGenericService<U extends BaseEntity, T extends DTO<U>>
     @Override
     public List<T> saveAll(List<T> dtos) {
         ValidationUtil.validateEntity(dtos);
+
         List<U> entities = dtos.stream().map(DTO::asEntity).collect(Collectors.toList());
         List<U> savedEntities = repository.saveAll(entities);
+
         return mapper.toDTOs(savedEntities);
     }
 }

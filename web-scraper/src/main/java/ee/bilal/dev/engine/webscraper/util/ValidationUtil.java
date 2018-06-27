@@ -11,19 +11,20 @@ import java.util.List;
  */
 public final class ValidationUtil {
     private ValidationUtil() {
+        throw new AssertionError();
     }
 
-    public static <T> void validateConfigPropertyNotNull(T property, String name)
-            throws ConfigurationException {
+    public static <T> void validateConfigPropertyNotNull(T property, String name) throws ConfigurationException {
         if (property == null)
         {
-            throw new ConfigurationException(
-                    String.format("Configurable property '%s' cannot be null.", name));
+            throw new ConfigurationException(String.format("Configurable property '%s' cannot be null.", name));
         }
     }
 
     public static <T> void validatePropertyNotNull(T t, String name) {
-        if (t == null) throw new IllegalArgumentException(String.format("Parameter '%s' cannot be null", name));
+        if (t == null) {
+            throw new IllegalArgumentException(String.format("Parameter '%s' cannot be null", name));
+        }
     }
 
     public static <T> void validateEntity(T entity)
@@ -38,17 +39,23 @@ public final class ValidationUtil {
 
     public static <E> void validateListNotNullOrEmpty(List<E> property, String name) {
         validatePropertyNotNull(property, name);
-        if (property.isEmpty())
+
+        if (property.isEmpty()){
             throw new IllegalArgumentException(String.format("Parameter '%s' cannot be empty", name));
+        }
     }
 
     public static void validateStringNotNullOrEmpty(String property, String name) {
         validatePropertyNotNull(property, name);
-        if (property.trim().isEmpty())
+
+        if (property.trim().isEmpty()) {
             throw new IllegalArgumentException(String.format("Parameter '%s' cannot be empty", name));
+        }
     }
 
     public static void validateDateIsNowOrFuture(LocalDate date) {
-        if (ZonedDateTime.now().toLocalDate().isAfter(date)) throw new IllegalArgumentException("Date cannot be in the past");
+        if (ZonedDateTime.now().toLocalDate().isAfter(date)) {
+            throw new IllegalArgumentException("Date cannot be in the past");
+        }
     }
 }

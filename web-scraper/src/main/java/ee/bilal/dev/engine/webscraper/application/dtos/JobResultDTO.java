@@ -1,6 +1,6 @@
 package ee.bilal.dev.engine.webscraper.application.dtos;
 
-import ee.bilal.dev.engine.webscraper.application.mappers.Mappers;
+import ee.bilal.dev.engine.webscraper.application.mappers.JobMapper;
 import ee.bilal.dev.engine.webscraper.domain.model.JobResult;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -48,6 +48,6 @@ public class JobResultDTO implements DTO<JobResult> {
 
     @Override
     public JobResult asEntity() {
-        return Mappers.JOB_RESULT_MAPPER.toEntity(this);
+        return JobMapper.JOB_RESULT_MAPPER.toEntity(this);
     }
 }

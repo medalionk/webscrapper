@@ -23,19 +23,26 @@ public class JobResultServiceImpl extends BaseGenericService<JobResult, JobResul
 
     @Override
     public JobResultDTO create(JobResultDTO entity) {
-        if(entity == null) return null;
+        if(entity == null) {
+            return null;
+        }
+
         return super.create(entity);
     }
 
     @Override
     public Optional<JobResultDTO> update(JobResultDTO dto) {
-        return findOne(dto.getId()).map(x -> super.update(dto))
-                .orElseThrow(() -> new IllegalArgumentException("Invalid JobReport Id"));
+        return findOne(dto.getId())
+                .map(x -> super.update(dto))
+                .orElseThrow(() -> new IllegalArgumentException("Invalid JobResult Id"));
     }
 
     @Override
     public List<JobResultDTO> saveAll(List<JobResultDTO> dtos) {
-        if(dtos == null) return new ArrayList<>();
+        if(dtos == null) {
+            return new ArrayList<>();
+        }
+
         return super.saveAll(dtos);
     }
 }

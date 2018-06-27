@@ -18,9 +18,9 @@ import java.time.Instant;
 public abstract class AuditingEntity extends IdentifiableEntity {
     @CreatedDate
     @Column(name = "created_date", nullable = false)
-    protected Instant createdDate = Instant.now();
+    protected transient Instant createdDate = Instant.now();
 
     @LastModifiedDate
     @Column(name = "last_modified_date")
-    protected Instant lastModifiedDate = Instant.now();
+    protected transient Instant lastModifiedDate = Instant.now();
 }

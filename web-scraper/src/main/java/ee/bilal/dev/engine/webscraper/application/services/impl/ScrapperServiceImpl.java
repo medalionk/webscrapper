@@ -28,8 +28,10 @@ import java.util.stream.Collectors;
 @Service
 public class ScrapperServiceImpl implements ScrapperService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ScrapperServiceImpl.class);
+
     private final JobReportService reportService;
     private final ApplicationConfig config;
+
     private ExecutorService executorService;
 
     @Autowired
@@ -54,14 +56,15 @@ public class ScrapperServiceImpl implements ScrapperService {
         }
     }
 
-    @Override
-    public Set<String> scraper(Set<String> urls, JobRequestDTO req, Consumer<JobResultDTO> consumer){
-        Set<String> queue = new HashSet<>();
-
+    /**
+     * Scraper wrapper
+     * @param urls set of urls
+     * @param req Job request
+     * @param consumer handler of scrapping result
+     */
+    private void scraper(Set<String> urls, JobRequestDTO req, Consumer<JobResultDTO> consumer){
         int initCurrentLevel = 0;
-        scraper(urls, queue, initCurrentLevel, req, consumer);
-
-        return queue;
+        scraper(urls, new HashSet<>(), initCurrentLevel, req, consumer);
     }
 
     @Override
@@ -112,7 +115,10 @@ public class ScrapperServiceImpl implements ScrapperService {
         for (int i = 0; nextUrls.size() < linksPerLevel && i < urls.size(); i++) {
             String url = urls.get(i);
             boolean isQueued = queue.contains(url);
-            if(!isQueued) nextUrls.add(url);
+
+            if(!isQueued) {
+                nextUrls.add(url);
+            }
         }
 
         return nextUrls;
@@ -166,6 +172,7 @@ public class ScrapperServiceImpl implements ScrapperService {
             executorService = Executors.newFixedThreadPool(config.getPoolSize());
         }
     }
+
     /**
      * Shutdown ongoing jobs
      * @param pool executor service pool
@@ -177,19 +184,17 @@ public class ScrapperServiceImpl implements ScrapperService {
 
         pool.shutdown(); // Disable new tasks from being submitted
         try {
-            // Wait a while for existing tasks to terminate
             if (!pool.awaitTermination(timeout, TimeUnit.SECONDS)) {
-                pool.shutdownNow(); // Cancel currently executing tasks
-                // Wait a while for tasks to respond to being cancelled
-                if (!pool.awaitTermination(timeout, TimeUnit.SECONDS))
+                pool.shutdownNow();
+
+                if (!pool.awaitTermination(timeout, TimeUnit.SECONDS)) {
                     LOGGER.error("Pool did not terminate");
+                }
             }
 
             updateCanceledReports();
         } catch (InterruptedException ie) {
-            // (Re-)Cancel if current thread also interrupted
             pool.shutdownNow();
-            // Preserve interrupt status
             Thread.currentThread().interrupt();
         }
     }
@@ -198,7 +203,9 @@ public class ScrapperServiceImpl implements ScrapperService {
      * Update reports to indicate cancellation
      */
     private void updateCanceledReports() {
-        reportService.findAll().stream()
+        reportService
+                .findAll()
+                .stream()
                 .filter(x -> x.getStatus() == JobStatusDTO.CREATED)
                 .forEach(x -> reportService.updateStatus(x.getId(), JobStatusDTO.CANCELED));
     }

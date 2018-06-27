@@ -28,34 +28,39 @@ public class RestControllerExceptionFilter {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<Map<String,String>> handleIllegalArgumentException(IllegalArgumentException ex) {
         logger.error("Invalid parameters: {}", ex.getMessage());
+
         return ResponseUtil.exceptionResponseBuilder(HttpStatus.BAD_REQUEST, ex);
     }
 
     @ExceptionHandler(IllegalStateException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<Map<String,String>> handleIllegalArgumentException(IllegalStateException ex) {
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<Map<String,String>> handleIllegalStateException(IllegalStateException ex) {
         logger.error("Invalid state: {}", ex.getMessage());
-        return ResponseUtil.exceptionResponseBuilder(HttpStatus.BAD_REQUEST, ex);
+
+        return ResponseUtil.exceptionResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR, ex);
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<Map<String,String>> handleResourceNotFoundException(ResourceNotFoundException ex) {
         logger.error("The resource was not found: {}", ex.getMessage());
+
         return ResponseUtil.exceptionResponseBuilder(HttpStatus.NOT_FOUND, ex);
     }
 
     @ExceptionHandler(MalformedURLException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<Map<String,String>> handleMalformedURLException(MalformedURLException ex) {
         logger.error("Malformed URL: {}", ex.getMessage());
-        return ResponseUtil.exceptionResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR, ex);
+
+        return ResponseUtil.exceptionResponseBuilder(HttpStatus.BAD_REQUEST, ex);
     }
 
     @ExceptionHandler(DataAccessException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Map<String,String>> handleDataAccessException(DataAccessException ex) {
         logger.error("Data access error: {}", ex.getMessage());
+
         return ResponseUtil.exceptionResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR, ex);
     }
 
@@ -63,6 +68,7 @@ public class RestControllerExceptionFilter {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Map<String,String>> handleServiceException(ServiceException ex) {
         logger.error("Service error: {}", ex.getMessage());
+
         return ResponseUtil.exceptionResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR, ex);
     }
 }

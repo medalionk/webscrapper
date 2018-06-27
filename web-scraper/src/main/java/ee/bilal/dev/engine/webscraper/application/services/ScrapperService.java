@@ -11,7 +11,15 @@ import java.util.function.Consumer;
  * Created by bilal90 on 5/4/2018.
  */
 public interface ScrapperService {
-    void scrape(List<JobRequestDTO> reqs, Consumer<JobResultDTO> consumer);
-    Set<String> scraper(Set<String> urls, JobRequestDTO req, Consumer<JobResultDTO> consumer);
+    /**
+     * Scrape websites
+     * @param requests to perform
+     * @param consumer handler of scrapping result
+     */
+    void scrape(List<JobRequestDTO> requests, Consumer<JobResultDTO> consumer);
+
+    /**
+     * Stop all jobs
+     */
     void stopAll();
 }
