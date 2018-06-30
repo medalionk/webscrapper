@@ -14,8 +14,6 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.net.MalformedURLException;
 import java.util.List;
@@ -32,8 +30,6 @@ public class RestErrorHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
     public ResponseEntity<Map<String,String>> processValidationError(MethodArgumentNotValidException ex) {
         BindingResult result = ex.getBindingResult();
 
@@ -42,12 +38,11 @@ public class RestErrorHandler {
                 .map(error -> "Field: " + error.getCode() + "; Error: " + error.getDefaultMessage())
                 .collect(Collectors.toList());
 
-        return ResponseUtil.exceptionResponseBuilder(HttpStatus.BAD_REQUEST,
-                new IllegalArgumentException(strErrors.toString()));
+        Exception exception = new IllegalArgumentException(strErrors.toString());
+        return ResponseUtil.exceptionResponseBuilder(HttpStatus.BAD_REQUEST, exception);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<Map<String,String>> handleIllegalArgumentException(IllegalArgumentException ex) {
         logger.error("Invalid parameters: {}", ex.getMessage());
 
@@ -55,7 +50,6 @@ public class RestErrorHandler {
     }
 
     @ExceptionHandler(IllegalStateException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Map<String,String>> handleIllegalStateException(IllegalStateException ex) {
         logger.error("Invalid state: {}", ex.getMessage());
 
@@ -63,7 +57,6 @@ public class RestErrorHandler {
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<Map<String,String>> handleResourceNotFoundException(ResourceNotFoundException ex) {
         logger.error("The resource was not found: {}", ex.getMessage());
 
@@ -71,7 +64,6 @@ public class RestErrorHandler {
     }
 
     @ExceptionHandler(MalformedURLException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<Map<String,String>> handleMalformedURLException(MalformedURLException ex) {
         logger.error("Malformed URL: {}", ex.getMessage());
 
@@ -79,7 +71,6 @@ public class RestErrorHandler {
     }
 
     @ExceptionHandler(DataAccessException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Map<String,String>> handleDataAccessException(DataAccessException ex) {
         logger.error("Data access error: {}", ex.getMessage());
 
@@ -87,7 +78,6 @@ public class RestErrorHandler {
     }
 
     @ExceptionHandler(ServiceException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Map<String,String>> handleServiceException(ServiceException ex) {
         logger.error("Service error: {}", ex.getMessage());
 
