@@ -3,16 +3,14 @@ package ee.bilal.dev.engine.webscraper.rest.controller.job;
 import ee.bilal.dev.engine.webscraper.application.dtos.JobReportDTO;
 import ee.bilal.dev.engine.webscraper.application.dtos.JobRequestDTO;
 import ee.bilal.dev.engine.webscraper.application.services.JobService;
-import ee.bilal.dev.engine.webscraper.rest.controller.RestControllerExceptionFilter;
 import ee.bilal.dev.engine.webscraper.rest.validator.CollectionValidator;
 import ee.bilal.dev.engine.webscraper.rest.validator.JobRequestValidator;
 import ee.bilal.dev.engine.webscraper.util.ResponseUtil;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +19,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Created by bilal90
@@ -30,14 +27,14 @@ import java.util.stream.Collectors;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/jobs")
-public class JobRestController extends RestControllerExceptionFilter {
+public class JobRestController {
+    private final Logger logger;
     private final JobService jobService;
     private final JobRequestValidator requestValidator;
 
     @Autowired
     public JobRestController(JobService jobService, JobRequestValidator requestValidator) {
-        super(JobRestController.class);
-
+        this.logger = LoggerFactory.getLogger(JobRestController.class);
         this.jobService = jobService;
         this.requestValidator = requestValidator;
     }

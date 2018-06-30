@@ -4,6 +4,8 @@ import ee.bilal.dev.engine.webscraper.application.dtos.DTO;
 import ee.bilal.dev.engine.webscraper.application.services.GenericService;
 import ee.bilal.dev.engine.webscraper.util.ResponseUtil;
 import ee.bilal.dev.engine.webscraper.util.ValidationUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -12,13 +14,13 @@ import java.util.List;
 /**
  * Created by bilal90 on 5/4/2018.
  */
-public class BaseRestController<T extends DTO> extends RestControllerExceptionFilter implements Rest<T> {
+public class BaseRestController<T extends DTO> implements Rest<T> {
     protected final GenericService<T> service;
+    protected final Logger logger;
 
     protected <U extends BaseRestController> BaseRestController(Class<U> tClass, GenericService<T> service) {
-        super(tClass);
-
         this.service = service;
+        this.logger = LoggerFactory.getLogger(tClass);
     }
 
     @Override
