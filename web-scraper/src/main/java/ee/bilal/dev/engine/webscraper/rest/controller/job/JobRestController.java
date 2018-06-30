@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +44,8 @@ public class JobRestController {
      * Get all jobs
      * @return job reports
      */
-    @GetMapping
+    @ApiOperation(value = "Get all Jobs")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<JobReportDTO>> getAll() {
         logger.info("Get all jobs...");
 
@@ -57,7 +59,9 @@ public class JobRestController {
      * @param id of job
      * @return job report
      */
-    @GetMapping("/{id}")
+    @ApiOperation(value = "Get one Job")
+    @GetMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<JobReportDTO> getJob(@PathVariable("id") String id) {
         logger.info("Get job with id: '{}'", id);
 
@@ -72,7 +76,7 @@ public class JobRestController {
      * @return job report
      */
     @ApiOperation(value = "Start Processing Jobs")
-    @PostMapping(consumes = "application/json", produces = "application/json")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<JobReportDTO>> processJobs(@Valid @RequestBody List<JobRequestDTO> jobRequests) {
         logger.info("Process jobs: '{}'", jobRequests);
 
@@ -85,9 +89,10 @@ public class JobRestController {
      * Get jobs statuses
      * @return jobs statuses
      */
-    @GetMapping("/status")
+    @ApiOperation(value = "Get report for all Jobs submitted")
+    @GetMapping(path = "/report", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String,Object>> getStatus() {
-        logger.info("Get jobs status.");
+        logger.info("Get jobs report.");
 
         return ResponseEntity.ok(jobService.getStatus());
     }
@@ -96,7 +101,8 @@ public class JobRestController {
      * Stop all ongoing jos
      * @return cancellation message and http code
      */
-    @GetMapping("/stop-all")
+    @ApiOperation(value = "Stop all ongoing Jobs")
+    @GetMapping(path = "/stop-all", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> stopOngoingJobs() {
         logger.info("Stop all ongoing jobs.");
 
