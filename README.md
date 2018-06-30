@@ -1,6 +1,6 @@
 # Webscrapper
 
-Given a link, links per level and maximum level, recursively scrape the text in the webpage 
+Given a link, links per level and maximum level, recursively scrape the text in the webpage of all the links upto the maximum level.
 
 ## Getting Started
 
@@ -35,16 +35,27 @@ queue-capacity={queue capacity}
 After creating the executable jar, run the application using java -jar, as shown below:
 
 ```
-/etc/alternatives/java -Dspring.datasource.url=jdbc:mysql://localhost:3306/scrapper -Dspring.datasource.username=green -Dspring.datasource.password=a9b8c7 -Dlogging.path=/home/leaf/backend/ -jar /executable/web-scraper-0.0.1-SNAPSHOT.jar
 
 java -jar web-scraper/target/web-scraper-0.0.1-SNAPSHOT.jar
+
+```
+To override the connection configurations in the application.properties file, use:
+
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+{path to java}/java -Dspring.datasource.url=jdbc:mysql://localhost:3306/scrapper -Dspring.datasource.username={username} -Dspring.datasource.password={password} -Dlogging.path={path to login folder} -jar {path to executable}/web-scraper-0.0.1-SNAPSHOT.jar
+
+```
+
 
 ## Running the tests
+Make sure that Maven is installed.     
+To run the test, navigate to the project folder and run the command as shown below: 
+```
 
+{path to maven}/mvn tests
 
+```
 
 ## Deployment
 
@@ -53,6 +64,8 @@ Copy the executable jar to the server and run using a Process Control System app
 ## API Reference
 
 [API documentation on Apiary](https://bn4.docs.apiary.io/#) 
+Or
+Visit the homepage of running application to view the Swagger API documentation.
 
 ## Built With
 
@@ -68,6 +81,7 @@ Copy the executable jar to the server and run using a Process Control System app
 
 ## Versioning
 
+API versioning currently at version 1.0
 
 
 ## Author
