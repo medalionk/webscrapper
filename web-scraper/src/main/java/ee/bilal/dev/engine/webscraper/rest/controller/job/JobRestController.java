@@ -6,6 +6,7 @@ import ee.bilal.dev.engine.webscraper.application.services.JobService;
 import ee.bilal.dev.engine.webscraper.rest.validator.CollectionValidator;
 import ee.bilal.dev.engine.webscraper.rest.validator.JobRequestValidator;
 import ee.bilal.dev.engine.webscraper.util.ResponseUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,13 +22,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static ee.bilal.dev.engine.webscraper.application.constants.Paths.JOBS;
+import static ee.bilal.dev.engine.webscraper.application.constants.Paths.VERSION;
+
 /**
  * Created by bilal90
  */
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/jobs")
+@Api(value = VERSION + JOBS)
+@RequestMapping(value = VERSION + JOBS)
 public class JobRestController {
     private final Logger logger;
     private final JobService jobService;

@@ -11,6 +11,7 @@ public final class AppGlobal {
   public static final String CONTENT_TYPE_JSON = "application/json;charset=UTF-8";
   public static final String AUTH_HEADER_BASIC = "Basic ";
   public static final String CHARSET_US_ASCII = "US-ASCII";
+  public static final String UTF8 = "UTF-8";
   public static final String COLON_SEPARATOR = ":";
   public static final String TIMESTAMP = "timestamp";
   public static final String STATUS = "status";

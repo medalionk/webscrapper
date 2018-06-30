@@ -13,16 +13,10 @@ import java.time.Instant;
 @Data
 @NoArgsConstructor(force = true)
 public class JobRequestDTO implements DTO<JobRequest> {
-    @NotNull(groups = Existing.class)
-    @Null(groups = New.class)
     private String id;
 
     @NotEmpty
-    @NotBlank
-    @NotNull(
-            message = "Url is required",
-            groups = {Existing.class, New.class}
-    )
+    @NotNull(message = "Url is required")
     private String url;
 
     @NotEmpty
@@ -51,11 +45,5 @@ public class JobRequestDTO implements DTO<JobRequest> {
     @Override
     public JobRequest asEntity() {
         return JobMapper.JOB_REQUEST_MAPPER.toEntity(this);
-    }
-
-    public interface Existing {
-    }
-
-    public interface New {
     }
 }

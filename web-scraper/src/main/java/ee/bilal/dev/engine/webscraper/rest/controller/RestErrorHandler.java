@@ -30,7 +30,7 @@ public class RestErrorHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String,String>> processValidationError(MethodArgumentNotValidException ex) {
+    public ResponseEntity<Map<String,String>> handleValidationError(MethodArgumentNotValidException ex) {
         BindingResult result = ex.getBindingResult();
 
         List<ObjectError> errors = result.getAllErrors();
