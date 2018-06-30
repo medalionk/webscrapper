@@ -14,7 +14,6 @@ import java.time.Instant;
  * Created by bilal90 on 5/4/2018.
  */
 @Data
-@EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor(force = true)
 public class JobResultDTO implements DTO<JobResult> {
     private String id;

@@ -1,18 +1,19 @@
 package ee.bilal.dev.engine.webscraper.configurations;
 
 import lombok.Getter;
-import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.Min;
 
 /**
  * Created by bilal90 on 10/26/2017.
  */
+@Component
 @Configuration
-@PropertySource(value = "classpath:application.properties", encoding="UTF-8")
+//@PropertySource(value = "classpath:application.properties", encoding="UTF-8")
 public class ApplicationConfig {
     @Getter
     @Min(0)

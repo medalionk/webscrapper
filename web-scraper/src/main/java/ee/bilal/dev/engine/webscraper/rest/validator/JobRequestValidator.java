@@ -10,7 +10,7 @@ import org.springframework.validation.Validator;
 public class JobRequestValidator implements Validator {
     @Override
     public boolean supports(Class clazz) {
-        return JobRequestDTO.class.equals(clazz);
+        return JobRequestDTO.class.isAssignableFrom(clazz);
     }
 
     @Override

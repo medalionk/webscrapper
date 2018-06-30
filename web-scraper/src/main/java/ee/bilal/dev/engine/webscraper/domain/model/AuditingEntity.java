@@ -14,7 +14,6 @@ import java.time.Instant;
 @Data
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-@EqualsAndHashCode(callSuper = false)
 public abstract class AuditingEntity extends IdentifiableEntity {
     @CreatedDate
     @Column(name = "created_date", nullable = false)

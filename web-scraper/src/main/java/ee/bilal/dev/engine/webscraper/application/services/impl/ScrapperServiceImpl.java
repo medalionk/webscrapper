@@ -44,6 +44,7 @@ public class ScrapperServiceImpl implements ScrapperService {
     @Override
     public void scrape(List<JobRequestDTO> reqs, Consumer<JobResultDTO> consumer) {
         initExecutorService();
+
         for (JobRequestDTO req : reqs) {
             LOGGER.info("Job request for: '{}' ", req);
 

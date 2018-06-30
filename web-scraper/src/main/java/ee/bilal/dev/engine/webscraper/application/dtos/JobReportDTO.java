@@ -10,7 +10,6 @@ import javax.validation.constraints.NotEmpty;
  * Created by bilal90 on 5/4/2018.
  */
 @Data
-@EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor(force = true)
 @AllArgsConstructor(staticName = "of")
 public class JobReportDTO implements DTO<JobReport> {

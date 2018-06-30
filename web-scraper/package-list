@@ -1,0 +1,14 @@
+ee.bilal.dev.engine.webscraper
+ee.bilal.dev.engine.webscraper.application.constants
+ee.bilal.dev.engine.webscraper.application.dtos
+ee.bilal.dev.engine.webscraper.application.exceptions
+ee.bilal.dev.engine.webscraper.application.mappers
+ee.bilal.dev.engine.webscraper.application.services
+ee.bilal.dev.engine.webscraper.application.services.impl
+ee.bilal.dev.engine.webscraper.configurations
+ee.bilal.dev.engine.webscraper.domain.model
+ee.bilal.dev.engine.webscraper.domain.repository
+ee.bilal.dev.engine.webscraper.rest.controller
+ee.bilal.dev.engine.webscraper.rest.controller.job
+ee.bilal.dev.engine.webscraper.rest.validator
+ee.bilal.dev.engine.webscraper.util

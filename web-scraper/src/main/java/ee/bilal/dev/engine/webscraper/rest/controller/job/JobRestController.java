@@ -4,14 +4,20 @@ import ee.bilal.dev.engine.webscraper.application.dtos.JobReportDTO;
 import ee.bilal.dev.engine.webscraper.application.dtos.JobRequestDTO;
 import ee.bilal.dev.engine.webscraper.application.services.JobService;
 import ee.bilal.dev.engine.webscraper.rest.controller.RestControllerExceptionFilter;
+import ee.bilal.dev.engine.webscraper.rest.validator.CollectionValidator;
 import ee.bilal.dev.engine.webscraper.rest.validator.JobRequestValidator;
 import ee.bilal.dev.engine.webscraper.util.ResponseUtil;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -51,7 +57,7 @@ public class JobRestController extends RestControllerExceptionFilter {
 
     /**
      * Get job with given ID
-     * @param id of jovb
+     * @param id of job
      * @return job report
      */
     @GetMapping("/{id}")
@@ -66,15 +72,13 @@ public class JobRestController extends RestControllerExceptionFilter {
     /**
      * Process jos
      * @param jobRequests to process
-     * @param result binding result for handling request validation
      * @return job report
      */
-    @PostMapping
-    public ResponseEntity<List<JobReportDTO>> process(
-            @RequestBody List<JobRequestDTO> jobRequests, BindingResult result) {
+    @ApiOperation(value = "Start Processing Jobs")
+    @PostMapping(consumes = "application/json", produces = "application/json")
+    public ResponseEntity<List<JobReportDTO>> processJobs(@Valid @RequestBody List<JobRequestDTO> jobRequests) {
         logger.info("Process jobs: '{}'", jobRequests);
 
-        handleJobRequestValidations(jobRequests, result);
         List<JobReportDTO> jobReports = jobService.processJobs(jobRequests);
 
         return ResponseEntity.ok(jobReports);
@@ -105,29 +109,16 @@ public class JobRestController extends RestControllerExceptionFilter {
     }
 
     /**
-     * Validate list of jobs request
-     * @param requests to validate
-     * @param result bind validation results
+     * Add collection or non-collection validators to binder
+     * @param binder webDataBinder
      */
-    private void handleJobRequestValidations(List<JobRequestDTO> requests, BindingResult result){
-        requests.forEach(x -> handleJobRequestValidation(x, result));
-    }
-
-    /**
-     * Validate of job request
-     * @param request to validate
-     * @param result bind validation result
-     */
-    private void handleJobRequestValidation(JobRequestDTO request, BindingResult result){
-        requestValidator.validate(request, result);
-
-        if (result.hasErrors()){
-            List<ObjectError> errors = result.getAllErrors();
-            List<String> strErrors = errors.stream()
-                    .map(error -> "Field: " + error.getCode() + " - " + error.getDefaultMessage())
-                    .collect(Collectors.toList());
-
-            throw new  IllegalArgumentException(strErrors.toString());
+    @InitBinder
+    public void setupBinder(WebDataBinder binder) {
+        if(binder.getTarget() instanceof Collection){
+            binder.addValidators(new CollectionValidator(requestValidator));
+        }
+        else {
+            binder.addValidators(requestValidator);
         }
     }
 }

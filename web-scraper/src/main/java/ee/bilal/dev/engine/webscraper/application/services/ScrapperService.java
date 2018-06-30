@@ -4,7 +4,6 @@ import ee.bilal.dev.engine.webscraper.application.dtos.JobRequestDTO;
 import ee.bilal.dev.engine.webscraper.application.dtos.JobResultDTO;
 
 import java.util.List;
-import java.util.Set;
 import java.util.function.Consumer;
 
 /**

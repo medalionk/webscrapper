@@ -53,7 +53,7 @@ public final class ResponseUtil {
      * @return built response
      */
     public static <X> ResponseEntity<X> wrapOrNotFound(Optional<X> maybeResponse) {
-        return wrapOrNotFound(maybeResponse, (HttpHeaders)null);
+        return wrapOrNotFound(maybeResponse, null);
     }
 
     /**
