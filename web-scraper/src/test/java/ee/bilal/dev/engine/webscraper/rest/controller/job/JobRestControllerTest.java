@@ -1,62 +1,102 @@
 package ee.bilal.dev.engine.webscraper.rest.controller.job;
 
 import ee.bilal.dev.engine.webscraper.application.dtos.JobReportDTO;
-import io.restassured.specification.RequestSpecification;
+import ee.bilal.dev.engine.webscraper.application.dtos.JobRequestDTO;
+import ee.bilal.dev.engine.webscraper.application.dtos.JobStatusDTO;
+import ee.bilal.dev.engine.webscraper.util.IdFactory;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import org.springframework.http.ResponseEntity;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import static ee.bilal.dev.engine.webscraper.application.constants.Paths.JOBS;
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.hamcrest.core.Is.is;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.apache.http.HttpStatus.SC_OK;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-public class JobRestControllerTest extends BaseTest{
+
+public class JobRestControllerTest extends BaseControllerTest {
+    private List<JobRequestDTO> jobRequests = new ArrayList<>();
+    private List<JobReportDTO> jobReports = new ArrayList<>();
+
+    @Before
+    public void setUp() throws Exception {
+        setDb();
+    }
+
     @Test
     public void getAll_ValidCall_ReturnJobReports() throws Exception{
-        given(jobRestController.getAll()).willReturn(ResponseEntity.ok(jobReports));
+        //given(jobRestController.getAll()).willReturn(ResponseEntity.ok(jobReports));
 
-        doGet(JOBS).andExpect(status().isOk())
+        doGetThen(JOBS).statusCode(SC_OK);
+
+        /*doGet(JOBS).andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].status", is(status.name())));
+                .andExpect(jsonPath("$[0].status", is(status.name())));*/
     }
 
     @Test
     public void getJob_ValidJobId_ReturnJobReport() throws Exception {
         JobReportDTO report = jobReports.get(0);
-        given(jobRestController.getJob(id)).willReturn(ResponseEntity.ok(report));
+        //given(jobRestController.getJob(id)).willReturn(ResponseEntity.ok(report));
 
-        doGet(JOBS + "/" + id).andExpect(status().isOk())
-                .andExpect(jsonPath("$.frn", is(report.getFrn())));
+        /*doGet(JOBS + "/" + id).andExpect(status().isOk())
+                .andExpect(jsonPath("$.frn", is(report.getFrn())));*/
     }
 
     @Test
     public void processJobs_ValidJobRequests_StartJobsAndReturnJobReports() throws Exception {
         String json = objectMapper.writeValueAsString(jobRequests);
 
-        given(jobRestController.processJobs(jobRequests)).willReturn(ResponseEntity.ok(jobReports));
+        Response resultJson = doPost(JOBS, json);
+        resultJson.then().statusCode(SC_OK);
 
-        doPost(JOBS, json)
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].status", is(status.name())));
+        JsonPath reports = resultJson
+                .then()
+                .statusCode(SC_OK)
+                .extract().jsonPath();
+
+
+        //reports.
+        //assertThat(retrievedBlogs..getInt("count")).isGreaterThan(7);
+        //resultJson.jsonPath()"$[0].city", is(arrival.getCity())
+        //List reports2 = reports.getList(new ArrayList<JobReportDTO>().getClass());
+        ResponseBody body = resultJson.body();
+        List<HashMap<String,String>> reports2 = resultJson.jsonPath().getList("");
+        //resultJson.as(JobReportDTO[].class);
+        assertEquals(reports2.size(), jobRequests.size());
+
+        HashMap<String,String> report = reports2.get(0);
+
+        assertNotNull(report);
+        assertNotNull(report.get("id"));
+        assertEquals(JobStatusDTO.CREATED.name(), report.get("status"));
     }
 
-    @Test
-    public void getStatus() throws Exception {
+    @After
+    public void tearDown() throws Exception {
     }
 
-    @Test
-    public void stopOngoingJobs() throws Exception {
-    }
+    private void setDb(){
+        String url = "https://bbc.com";
+        String frn = "1";
+        String dateTimeStr = LocalDateTime.now().toString();
+        String id = IdFactory.uuidID();
+        JobStatusDTO status = JobStatusDTO.CREATED;
 
-    private RequestSpecification preparePostPutWhen(String body) {
-        return io.restassured.RestAssured.given()
-                .port(8080)
-                .contentType(String.valueOf(APPLICATION_JSON))
-                .body(body)
-                .when();
+        float percentComplete = 0f;
+        int maxLevel = 10;
+        int linksPerLevel = 5;
+
+        jobRequests.add(JobRequestDTO.of(url, frn, maxLevel, linksPerLevel));
+        jobReports.add(JobReportDTO.of(id, dateTimeStr, frn, dateTimeStr, percentComplete, status));
+
     }
 }
