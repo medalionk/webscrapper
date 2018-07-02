@@ -75,7 +75,7 @@ public class JobReportServiceImpl extends BaseGenericService<JobReport, JobRepor
     }
 
     @Override
-    public Map<String,Object> getStatus() {
+    public Map<String,Object> getReport() {
         Map<String,Object> status = new HashMap<>();
         List<JobReportDTO> reports = findAll();
 

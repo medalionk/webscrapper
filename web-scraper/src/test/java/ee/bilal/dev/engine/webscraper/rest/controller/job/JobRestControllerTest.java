@@ -9,6 +9,7 @@ import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
@@ -17,38 +18,113 @@ import java.util.HashMap;
 import java.util.List;
 
 import static ee.bilal.dev.engine.webscraper.application.constants.Paths.JOBS;
+import static ee.bilal.dev.engine.webscraper.application.constants.Paths.REPORT;
+import static ee.bilal.dev.engine.webscraper.application.constants.Paths.STOP_ALL;
+import static io.restassured.RestAssured.given;
 import static org.apache.http.HttpStatus.SC_OK;
+import static org.apache.http.HttpStatus.SC_METHOD_NOT_ALLOWED;
+import static org.apache.http.HttpStatus.SC_NOT_FOUND;
+import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 
 public class JobRestControllerTest extends BaseControllerTest {
-    private List<JobRequestDTO> jobRequests = new ArrayList<>();
-    private List<JobReportDTO> jobReports = new ArrayList<>();
+    private static List<JobRequestDTO> jobRequests = new ArrayList<>();
+    private static List<JobReportDTO> jobReports = new ArrayList<>();
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeClass
+    public static void init() {
         setDb();
     }
 
     @Test
-    public void getAll_ValidCall_ReturnJobReports() throws Exception{
-        //given(jobRestController.getAll()).willReturn(ResponseEntity.ok(jobReports));
-
-        doGetThen(JOBS).statusCode(SC_OK);
-
-        /*doGet(JOBS).andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].status", is(status.name())));*/
+    public void whenInValidEndpoint_shouldReturnNotFoundHttpCode() throws Exception{
+        prepareGetWhen()
+                .get("/some-endpoint")
+                .then().statusCode(SC_NOT_FOUND);
     }
 
     @Test
-    public void getJob_ValidJobId_ReturnJobReport() throws Exception {
-        JobReportDTO report = jobReports.get(0);
-        //given(jobRestController.getJob(id)).willReturn(ResponseEntity.ok(report));
+    public void getAll_whenValidCall_shouldReturnOkHttpCode() throws Exception{
+        prepareGetWhen()
+                .get(JOBS)
+                .then().statusCode(SC_OK);
+    }
 
-        /*doGet(JOBS + "/" + id).andExpect(status().isOk())
-                .andExpect(jsonPath("$.frn", is(report.getFrn())));*/
+    @Test
+    public void getAll_whenInvalidMethod_shouldReturnMethodNotAllowedHttpCode() throws Exception{
+        prepareGetWhen()
+                .delete(JOBS)
+                .then().statusCode(SC_METHOD_NOT_ALLOWED);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void getJob_whenInValidParams_shouldThrowIllegalArgumentException() throws Exception{
+        prepareGetWhen()
+                .get(JOBS + "/{}");
+    }
+
+    @Test
+    public void getJob_whenInvalidMethod_shouldReturnMethodNotAllowedHttpCode() throws Exception{
+        prepareGetWhen()
+                .delete(JOBS + "/some-id")
+                .then().statusCode(SC_METHOD_NOT_ALLOWED);
+    }
+
+    @Test
+    public void getReport_whenValidCall_shouldReturnOkHttpCode() throws Exception{
+        prepareGetWhen()
+                .get(REPORT)
+                .then().statusCode(SC_OK);
+    }
+
+    @Test
+    public void getReport_whenInvalidMethod_shouldReturnMethodNotAllowedHttpCode() throws Exception{
+        prepareGetWhen()
+                .delete(REPORT)
+                .then().statusCode(SC_METHOD_NOT_ALLOWED);
+    }
+
+    @Test
+    public void stopAll_whenValidCall_shouldReturnOkHttpCode() throws Exception{
+        prepareGetWhen()
+                .get(STOP_ALL)
+                .then().statusCode(SC_OK);
+    }
+
+    @Test
+    public void stopAll_whenInvalidMethod_shouldReturnMethodNotAllowedHttpCode() throws Exception{
+        prepareGetWhen()
+                .delete(STOP_ALL)
+                .then().statusCode(SC_METHOD_NOT_ALLOWED);
+    }
+
+    @Test
+    public void processJobs_whenInvalidMethod_shouldReturnMethodNotAllowedHttpCode() throws Exception{
+        String json = objectMapper.writeValueAsString(jobRequests);
+
+        given()
+                .contentType(String.valueOf(APPLICATION_JSON))
+                .body(json)
+                .when()
+                .put(JOBS)
+                .then()
+                .statusCode(SC_METHOD_NOT_ALLOWED);
+    }
+
+    @Test
+    public void processJobs_whenInvalidPostEntity_shouldReturnBadRequestHttpCode() throws Exception{
+        String json = "Invalid json object";
+
+        given()
+                .contentType(String.valueOf(APPLICATION_JSON))
+                .body(json)
+                .when()
+                .post(JOBS)
+                .then()
+                .statusCode(SC_BAD_REQUEST);
     }
 
     @Test
@@ -58,33 +134,23 @@ public class JobRestControllerTest extends BaseControllerTest {
         Response resultJson = doPost(JOBS, json);
         resultJson.then().statusCode(SC_OK);
 
-        JsonPath reports = resultJson
+        List<HashMap<String,String>> reports = resultJson
                 .then()
                 .statusCode(SC_OK)
-                .extract().jsonPath();
+                .extract()
+                .jsonPath()
+                .getList("");
 
+        assertEquals(jobRequests.size(), reports.size());
 
-        //reports.
-        //assertThat(retrievedBlogs..getInt("count")).isGreaterThan(7);
-        //resultJson.jsonPath()"$[0].city", is(arrival.getCity())
-        //List reports2 = reports.getList(new ArrayList<JobReportDTO>().getClass());
-        ResponseBody body = resultJson.body();
-        List<HashMap<String,String>> reports2 = resultJson.jsonPath().getList("");
-        //resultJson.as(JobReportDTO[].class);
-        assertEquals(reports2.size(), jobRequests.size());
-
-        HashMap<String,String> report = reports2.get(0);
+        HashMap<String,String> report = reports.get(0);
 
         assertNotNull(report);
         assertNotNull(report.get("id"));
         assertEquals(JobStatusDTO.CREATED.name(), report.get("status"));
     }
 
-    @After
-    public void tearDown() throws Exception {
-    }
-
-    private void setDb(){
+    private static void setDb(){
         String url = "https://bbc.com";
         String frn = "1";
         String dateTimeStr = LocalDateTime.now().toString();

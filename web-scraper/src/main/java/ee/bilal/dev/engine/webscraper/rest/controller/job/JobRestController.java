@@ -96,10 +96,10 @@ public class JobRestController {
      */
     @ApiOperation(value = "Get report for all Jobs submitted")
     @GetMapping(path = "/report", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String,Object>> getStatus() {
+    public ResponseEntity<Map<String,Object>> getReport() {
         logger.info("Get jobs report.");
 
-        return ResponseEntity.ok(jobService.getStatus());
+        return ResponseEntity.ok(jobService.getReport());
     }
 
     /**
@@ -108,7 +108,7 @@ public class JobRestController {
      */
     @ApiOperation(value = "Stop all ongoing Jobs")
     @GetMapping(path = "/stop-all", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> stopOngoingJobs() {
+    public ResponseEntity<String> stopAll() {
         logger.info("Stop all ongoing jobs.");
 
         jobService.stopOngoingJobs();

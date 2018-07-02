@@ -62,8 +62,8 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public Map<String,Object> getStatus() {
-        return reportService.getStatus();
+    public Map<String,Object> getReport() {
+        return reportService.getReport();
     }
 
     @Override

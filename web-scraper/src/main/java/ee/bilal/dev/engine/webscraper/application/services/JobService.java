@@ -35,7 +35,7 @@ public interface JobService {
      * Get Jobs statuses
      * @return Jobs report
      */
-    Map<String,Object> getStatus();
+    Map<String,Object> getReport();
 
     /**
      * Stop all ongoing jobs

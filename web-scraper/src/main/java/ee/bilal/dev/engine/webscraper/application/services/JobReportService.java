@@ -35,5 +35,5 @@ public interface JobReportService extends GenericService<JobReportDTO> {
      * Get Jobs statuses
      * @return Jobs report
      */
-    Map<String,Object> getStatus();
+    Map<String,Object> getReport();
 }

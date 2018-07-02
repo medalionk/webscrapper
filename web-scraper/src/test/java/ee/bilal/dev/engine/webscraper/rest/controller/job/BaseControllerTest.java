@@ -41,8 +41,10 @@ public abstract class BaseControllerTest {
     public void setUp() throws Exception {
         RestAssured.baseURI = BASE_HOST;
         RestAssured.basePath = BASE_PATH;
+
         RestAssured.filters(singletonList(new ResponseLoggingFilter()));
         RestAssured.filters(singletonList(new RequestLoggingFilter()));
+
         RestAssured.port = port;
 
         objectMapper = new ObjectMapper();
@@ -63,11 +65,13 @@ public abstract class BaseControllerTest {
                 .post(path);
     }
 
-    private RequestSpecification prepareGetWhen() {
-        return given().when();
+    RequestSpecification prepareGetWhen() {
+        return given()
+                .contentType(String.valueOf(APPLICATION_JSON))
+                .when();
     }
 
-    private RequestSpecification preparePostWhen(String body) {
+    RequestSpecification preparePostWhen(String body) {
         return given()
                 .contentType(String.valueOf(APPLICATION_JSON))
                 .body(body)
