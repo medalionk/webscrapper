@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
@@ -87,7 +88,7 @@ public class JobRestController {
 
         List<JobReportDTO> jobReports = jobService.processJobs(jobRequests);
 
-        return ResponseEntity.ok(jobReports);
+        return ResponseEntity.status(HttpStatus.CREATED).body(jobReports);
     }
 
     /**

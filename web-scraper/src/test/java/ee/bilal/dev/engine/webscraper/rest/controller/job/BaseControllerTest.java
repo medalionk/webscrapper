@@ -17,6 +17,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static ee.bilal.dev.engine.webscraper.application.constants.Paths.STOP_ALL;
 import static io.restassured.RestAssured.given;
 import static java.util.Collections.singletonList;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -38,7 +39,7 @@ public abstract class BaseControllerTest {
     ObjectMapper objectMapper;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         RestAssured.baseURI = BASE_HOST;
         RestAssured.basePath = BASE_PATH;
 
@@ -51,7 +52,8 @@ public abstract class BaseControllerTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
+
     }
 
     ValidatableResponse doGetThen(String path) {
