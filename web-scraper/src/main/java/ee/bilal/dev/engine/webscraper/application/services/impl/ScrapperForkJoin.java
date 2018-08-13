@@ -2,6 +2,7 @@ package ee.bilal.dev.engine.webscraper.application.services.impl;
 
 import ee.bilal.dev.engine.webscraper.application.dtos.JobRequestDTO;
 import ee.bilal.dev.engine.webscraper.application.dtos.JobResultDTO;
+import ee.bilal.dev.engine.webscraper.util.UrlUtil;
 import ee.bilal.dev.engine.webscraper.util.ValidationUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,34 +22,40 @@ import java.util.stream.Collectors;
 
 public class ScrapperForkJoin {
     private static final Logger LOGGER = LoggerFactory.getLogger(ScrapperForkJoin.class);
-    private final Consumer<JobResultDTO> resultHandler;
+    private static final String[] schemes = {"http","https"};
+
     private final Set<String> visitedUrls = ConcurrentHashMap.newKeySet();
+
+    private final Consumer<JobResultDTO> resultHandler;
+    private final JobRequestDTO req;
+    private final Runnable progressHandler;
 
     /**
      * Instantiate Scrapper
      * @param resultHandler consumer to handle scrape result
      */
-    public ScrapperForkJoin(final Consumer<JobResultDTO> resultHandler) {
+    public ScrapperForkJoin(final JobRequestDTO req, final Consumer<JobResultDTO> resultHandler,
+                            final Runnable progressHandler) {
+        validateJobRequest(req);
+
+        this.req = req;
         this.resultHandler = Objects.requireNonNull(resultHandler);
+        this.progressHandler = Objects.requireNonNull(progressHandler);
     }
 
     private class scrapePageAction extends RecursiveAction {
         private static final long serialVersionUID = -196522408291343951L;
 
-        private final JobRequestDTO req;
-        private final Runnable progressHandler;
-
+        private final String url;
         private final int currentLevel;
 
         /**
          * Create a ScrapePageAction
-         * @param req JobRequest
-         * @param progressHandler runnable to update progress
+         * @param url of current page to scrape
          * @param currentLevel of scrapping
          */
-        scrapePageAction(final JobRequestDTO req, final Runnable progressHandler, int currentLevel) {
-            this.req = Objects.requireNonNull(req);
-            this.progressHandler = progressHandler;
+        scrapePageAction(final String url, final int currentLevel) {
+            this.url = url;
             this.currentLevel = currentLevel;
         }
 
@@ -59,17 +66,9 @@ public class ScrapperForkJoin {
                 return;
             }
 
-            LOGGER.info("Handle JobRequest: '{}' ", req);
-
-            String url = req.getUrl();
-            ValidationUtil.validateStringNotNullOrEmpty(url, "url");
-
             try {
                 LOGGER.info("Connecting to '{}' ", url);
                 Document doc = Jsoup.connect(url).get();
-
-                LOGGER.info("Add URL '{}' to visited list ", url);
-                //visitedUrls.add(url);
 
                 LOGGER.info("Fetching text in '{}' ", url);
                 String body = doc.body().text();
@@ -80,10 +79,9 @@ public class ScrapperForkJoin {
                 {
                     progressHandler.run();
                 }
-                //progressHandler.run();
 
                 LOGGER.info("Fetching links in '{}' ", url);
-                Elements innerLinks = doc.select("a[href]");
+                Elements innerLinks = doc.select("a[href~=^[^#]+$]");
 
                 int linkSize = innerLinks.size();
                 LOGGER.info("Total number of links in page: '{}' ", linkSize);
@@ -93,19 +91,14 @@ public class ScrapperForkJoin {
                         .map(x -> x.attr("abs:href"))
                         .collect(Collectors.toList());
 
-                final String jobId = req.getId();
-                final String frn = req.getFrn();
                 final int linksPerLevel = req.getLinksPerLevel();
-                final int maxLevel = req.getMaxLevel();
-
                 final Set<String> nextUrls = getNextUrls(links, linksPerLevel);
+
                 if (!nextUrls.isEmpty()) {
                     for (final String nextUrl : nextUrls) {
-                        final JobRequestDTO newReq = JobRequestDTO.of(nextUrl, frn, maxLevel, linksPerLevel);
-                        newReq.setId(jobId);
-
                         final int nextLevel = currentLevel + 1;
-                        final scrapePageAction action = new scrapePageAction(newReq, progressHandler, nextLevel);
+                        final scrapePageAction action = new scrapePageAction(nextUrl, nextLevel);
+
                         action.fork();
                         actions.add(action);
                     }
@@ -135,6 +128,8 @@ public class ScrapperForkJoin {
 
             for (int i = 0; nextUrls.size() < count && i < urls.size(); i++) {
                 final String url = urls.get(i);
+                if(!UrlUtil.isValidUrl(url, schemes))
+                    continue;
 
                 if(!visitedUrls.contains(url)) {
                     visitedUrls.add(url);
@@ -148,17 +143,37 @@ public class ScrapperForkJoin {
 
     /**
      * Start scrapping pages
-     * @param req Job request
-     * @param progressHandler runnable to update progress
      */
-    public void scrapePage(final JobRequestDTO req, final Runnable progressHandler) {
+    public void scrapePage() {
+        LOGGER.info("Handle JobRequest: '{}' ", req);
+
         final ForkJoinPool pool = new ForkJoinPool();
         final int initialLevel = -1;
 
         try {
-            pool.invoke(new scrapePageAction(req, progressHandler, initialLevel));
+            pool.invoke(new scrapePageAction(req.getUrl(), initialLevel));
         } finally {
             pool.shutdown();
+        }
+    }
+
+    private void validateJobRequest(final JobRequestDTO req){
+        final String url = req.getUrl();
+
+        ValidationUtil.validateStringNotNullOrEmpty(url, "url");
+        ValidationUtil.validateStringNotNullOrEmpty(req.getFrn(), "frn");
+        ValidationUtil.validateStringNotNullOrEmpty(url, "url");
+
+        if(!UrlUtil.isValidUrl(url, schemes)){
+            throw new IllegalArgumentException(String.format("URL '%s' is not valid!!!", url));
+        }
+
+        if(req.getLinksPerLevel() < 1){
+            throw new IllegalArgumentException("LinksPerLevel cannot be less than 1!!!");
+        }
+
+        if(req.getMaxLevel() < 1){
+            throw new IllegalArgumentException("MaxLevel cannot be less than 1!!!");
         }
     }
 }

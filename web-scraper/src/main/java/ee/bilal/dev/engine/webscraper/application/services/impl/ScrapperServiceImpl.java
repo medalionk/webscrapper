@@ -31,7 +31,7 @@ public class ScrapperServiceImpl implements ScrapperService {
     @Async
     @Override
     public void scrape(List<JobRequestDTO> reqs, Consumer<JobResultDTO> consumer) {
-        final ScrapperForkJoin scrapper = new ScrapperForkJoin(consumer);
+        final long start = System.nanoTime();
 
         for (JobRequestDTO req : reqs) {
             LOGGER.info("Job request for: '{}' ", req);
@@ -46,10 +46,14 @@ public class ScrapperServiceImpl implements ScrapperService {
                 reportService.updateProgress(jobId, progress, JobStatusDTO.ONGOING);
             };
 
-            scrapper.scrapePage(req, progressHandler);
+            final ScrapperForkJoin scrapper = new ScrapperForkJoin(req, consumer, progressHandler);
+            scrapper.scrapePage();
 
             LOGGER.info("Mark Job '{}' as completed ", jobId);
             reportService.markCompleted(jobId);
+
+            final double taken = (System.nanoTime() - start) / 1000000000.0;
+            LOGGER.warn("Completed in: '{}' seconds", taken);
         }
     }
 
