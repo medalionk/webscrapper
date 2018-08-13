@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b29b018c-89bd-49c9-8e9c-5f96a8f94e3c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/services/impl/JobServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/services/impl/JobServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/services/impl/ScrapperForkJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/services/impl/ScrapperForkJoin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/services/impl/ScrapperServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/application/services/impl/ScrapperServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/controller/RestErrorHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/controller/RestErrorHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/controller/job/JobRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/rest/controller/job/JobRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/util/UrlUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-scraper/src/main/java/ee/bilal/dev/engine/webscraper/util/UrlUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -265,7 +260,17 @@
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
-      <expand />
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="web-scraper" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="web-scraper" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
       <select />
     </treeState>
   </component>
@@ -516,7 +521,7 @@
     <property name="SONARLINT_ANALYSIS_RESULTS_SCOPE" value="All project files" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534149571324" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534149805504" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -759,16 +764,15 @@
       <workItem from="1532955315522" duration="904000" />
       <workItem from="1533564352209" duration="13292000" />
       <workItem from="1534052108206" duration="2011000" />
-      <workItem from="1534067595226" duration="33536000" />
+      <workItem from="1534067595226" duration="33849000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141469000" />
+    <option name="totallyTimeSpent" value="141782000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1292" height="686" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49850747" visible="true" weight="0.31737012" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -781,8 +785,8 @@
       <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.4061372" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32889965" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.42418772" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32851985" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.42418772" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -800,7 +804,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Maven Projects" order="5" weight="0.11641067" />
+      <window_info anchor="right" id="Maven Projects" order="5" visible="true" weight="0.116071425" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
