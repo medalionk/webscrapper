@@ -31,6 +31,7 @@ public class ScrapperServiceImpl implements ScrapperService {
     @Async
     @Override
     public void scrape(List<JobRequestDTO> reqs, Consumer<JobResultDTO> consumer) {
+        // Time stats for testing purposes
         final long start = System.nanoTime();
 
         for (JobRequestDTO req : reqs) {

@@ -128,7 +128,11 @@ public class ScrapperForkJoin {
 
             for (int i = 0; nextUrls.size() < count && i < urls.size(); i++) {
                 final String url = urls.get(i);
+
                 if(!UrlUtil.isValidUrl(url, schemes))
+                    continue;
+
+                if(!UrlUtil.isSameHost(url, req.getUrl()))
                     continue;
 
                 if(!visitedUrls.contains(url)) {

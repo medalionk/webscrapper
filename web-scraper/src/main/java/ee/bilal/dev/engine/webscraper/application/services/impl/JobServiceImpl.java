@@ -78,7 +78,12 @@ public class JobServiceImpl implements JobService {
      * @return list of job reports
      */
     private List<JobReportDTO> createJobReports(List<JobRequestDTO> requests){
-        return requests.stream().map(this::createJobReport).collect(Collectors.toList());
+        List<JobReportDTO> jobs = requests
+                .parallelStream()
+                .map(this::createJobReport)
+                .collect(Collectors.toList());
+
+        return reportService.saveAll(jobs);
     }
 
     /**
@@ -96,6 +101,6 @@ public class JobServiceImpl implements JobService {
         report.setStatus(JobStatusDTO.CREATED);
         report.setPercentageComplete(ZERO_PERCENT);
 
-        return reportService.create(report);
+        return report;
     }
 }

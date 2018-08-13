@@ -15,6 +15,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.persistence.EntityNotFoundException;
 import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +55,13 @@ public class RestErrorHandler {
         logger.error("Invalid state: {}", ex.getMessage());
 
         return ResponseUtil.exceptionResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR, ex);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<Map<String,String>> handleEntityNotFoundException(EntityNotFoundException ex) {
+        logger.error("The resource was not found: {}", ex.getMessage());
+
+        return ResponseUtil.exceptionResponseBuilder(HttpStatus.NOT_FOUND, ex);
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)

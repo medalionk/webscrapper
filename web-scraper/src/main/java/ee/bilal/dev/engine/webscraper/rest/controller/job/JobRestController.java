@@ -66,8 +66,7 @@ public class JobRestController {
      * @return job report
      */
     @ApiOperation(value = "Get one Job")
-    @GetMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<JobReportDTO> getJob(@PathVariable("id") String id) {
         logger.info("Get job with id: '{}'", id);
 
@@ -83,7 +82,7 @@ public class JobRestController {
      */
     @ApiOperation(value = "Start Processing Jobs")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<JobReportDTO>> processJobs(@Valid @RequestBody List<JobRequestDTO> jobRequests) {
+    public ResponseEntity<List<JobReportDTO>> processJobs(/*@Valid*/ @RequestBody List<JobRequestDTO> jobRequests) {
         logger.info("Process jobs: '{}'", jobRequests);
 
         List<JobReportDTO> jobReports = jobService.processJobs(jobRequests);
